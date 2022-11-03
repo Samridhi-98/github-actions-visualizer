@@ -1,29 +1,32 @@
 import './App.css';
+import Description from './components/description/Description';
+import FeatureList from './components/featureList/FeatureList';
+import Footer from './components/footer/Footer';
+import Graph from './components/graph/Graph';
+import Navbar from './components/navbar/Navbar';
 
 function App() {
   return (
     <>
       <div className='app'>
-        {/* <header className='App-header'>
-        </header> */}
+        <header className='app-header'>
+          <Navbar />
+        </header>
         <main id='main-content' className='main-content'>
           <section className='top-section'>
-            <div className='feature-list'>
-              <p><centre>Hello World!</centre></p>
+            <FeatureList />
+            <div className='stats'>
+              <p>Hello Kittty!</p>
             </div>
-            <div className='description'>
-            <p><centre>Hello Kittty!</centre></p>
-            </div>
+            <Description />
           </section>
           <section className='middle-section'>
-            <p>Hello kitty, it's wednesday!</p>
+            <Graph />
           </section>
         </main>
         <hr></hr>
         <footer className='footer'>
-          Made with  ❤️  by the AsyncAPI Initiative.
-          {/* Copyright © AsyncAPI Project a Series of LF Projects, LLC. For web site terms of use, <br></br>
-          trademark policy and general project policies please see https://lfprojects.org */}
+          <Footer />
         </footer>
       </div>
     </>

@@ -1,0 +1,16 @@
+.description {
+  flex: 1;
+  margin-left: 1vh;
+  text-align: center;
+  border-radius:5px;
+  border: 2px solid #282A2F;
+  background-color: #191B1F;
+}
+
+h4{
+  /* top: 0;
+  position: sticky;  */
+  text-align: center;
+  /* background-color: #191B1F; */
+  /* padding: 1vh 0vh; */
+}

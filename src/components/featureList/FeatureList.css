@@ -1,0 +1,24 @@
+.feature-list {
+  flex: 1;
+  margin-right: 1vh;
+  border-radius:5px;
+  border: 2px solid #282A2F;
+  background-color: #191B1F;
+  overflow-y: scroll;
+}
+
+h4{
+  /* top: 0;
+  position: sticky;  */
+  text-align: center;
+  /* background-color: #191B1F; */
+  /* padding: 1vh 0vh; */
+}
+
+.card{
+  padding: 1vh;
+  margin: 0.75vh 1vh;
+  border-radius:5px;
+  border: 2px solid #282A2F;
+  background-color: #23252A;
+}
