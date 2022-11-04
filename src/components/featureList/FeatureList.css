@@ -11,7 +11,7 @@ h4{
   /* top: 0;
   position: sticky;  */
   text-align: center;
-  /* background-color: #191B1F; */
+  background-color: #191B1F;
   /* padding: 1vh 0vh; */
 }
 
@@ -21,4 +21,8 @@ h4{
   border-radius:5px;
   border: 2px solid #282A2F;
   background-color: #23252A;
+}
+
+.card:hover{
+  background-color: #282A2F;
 }
