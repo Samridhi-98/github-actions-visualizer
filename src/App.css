@@ -24,17 +24,29 @@
 }
 
 .middle-section {
-  min-height: 60vh;
+  height: 60vh;
   margin-top: 1vh;
   text-align: center;
+  display: flex;
   background-color: #191B1F;
-  border-radius:5px;
+  border-radius: 5px;
   border: 2px solid #282A2F;
+}
+
+.bar-graph{
+  flex: 1;
+  border-radius: 5px;
+  /* border: 2px solid #282A2F; */
+}
+
+.line-graph{
+  flex: 1;
+  border-radius: 5px;
+  /* border: 2px solid #282A2F; */
 }
 
 .stats{
   flex: 1;
-  margin-right: 1vh;
   border-radius:5px;
   text-align: center;
   border: 2px solid #282A2F;

@@ -1,12 +1,15 @@
 import './Navbar.css'
+import AsyncAPILogo from '../../images/AsyncAPILogoLight';
 
 function Navbar() {
     return (
         <>
             <nav className="navbar">
-                <h1 className="titleName">
-                    AsyncAPI Initiative
-                </h1>
+                <div className='logo'>
+                    <a href='https://www.asyncapi.com/' target='_blank' rel='noreferrer'>
+                        <AsyncAPILogo />
+                    </a>
+                </div>
             </nav>
         </>
     )

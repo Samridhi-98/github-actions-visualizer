@@ -1,3 +1,7 @@
 .navbar{
- text-align: center;
+ padding: 1vh;
+}
+
+.logo{
+    margin: 1vh;
 }
