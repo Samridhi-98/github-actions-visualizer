@@ -9,7 +9,7 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'Success Stats',
+            text: 'Average Runtime',
         },
     },
 };

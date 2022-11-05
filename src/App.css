@@ -24,45 +24,30 @@
 }
 
 .middle-section {
-  min-height: 60vh;
+  height: 60vh;
   margin-top: 1vh;
   text-align: center;
   display: flex;
-  background-color: #191B1F;
-  border-radius: 5px;
-  border: 2px solid #282A2F;
+  /* background-color: #191B1F; */
+  /* border-radius: 5px;
+  border: 2px solid #282A2F; */
 }
 
 .graph-subdivison1{
-  display: flex;
-  flex-direction: column;
   flex: 1;
-}
+  padding-right: 1vh;
+} 
 
 .graph-subdivison2{
   flex: 1;
+  padding-left: 1vh;
 }
 
-.bar-graph{
-  flex: 1;
-  border-radius: 5px;
-  /* border: 2px solid #282A2F; */
-}
-
-.line-graph{
-  flex: 1;
-  border-radius: 5px;
-  /* border: 2px solid #282A2F; */
-}
-
-.area-graph{
+.bar-graph, .line-graph, .area-graph, .multiline-graph{
   margin-top: 1vh;
   border-radius: 5px;
-  /* border: 2px solid #282A2F; */
-}
-
-.multiline-graph{
-  margin-top: 1vh;
+  border : 1px solid #282A2F;
+  background-color: #191B1F;
 }
 
 .stats{

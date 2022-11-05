@@ -2,46 +2,38 @@ import './Graph.css';
 import { Bar } from "react-chartjs-2";
 
 function BarGraph() {
-    const barChartData = {
-        labels: ["October", "November", "December"],
-        datasets: [
-            {
-                data: [8137119, 9431691, 10266674],
-                label: "Infected People",
-                borderColor: "#3333ff",
-                backgroundColor: "#D8A937",
-                fill: true
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top'
             },
-            {
-                data: [1216410, 1371390, 1477380],
-                label: "Deaths People",
-                borderColor: "#ff3333",
-                backgroundColor: "#DE4557",
-                fill: true
-            }
-        ]
+            title: {
+                display: true,
+                text: 'Total no of runs per day',
+            },
+        },
     };
 
-    const barChart = (
-        <Bar
-            type="bar"
-            height={100}
-            options={{
-                title: {
-                    display: true,
-                    text: "COVID-19 Cases of Last 3 Months",
-                    fontSize: 15
-                },
-                legend: {
-                    display: true,
-                    position: "top"
-                }
-            }}
-            className='bar-graph'
-            data={barChartData}
-        />
-    );
-    return barChart;
-};
+    const labels = ['January', 'February', 'March', 'April', 'May'];
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Dataset 1',
+                data: [1216410, 1371390, 1477380, 1234567, 1347645],
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
+            {
+                label: 'Dataset 2',
+                data: [8137119, 9434691, 12263584, 1315610, 1678390],
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
+        ],
+    };
+    return <Bar height={100} options={options} data={data} />;
+}
+
 
 export default BarGraph;

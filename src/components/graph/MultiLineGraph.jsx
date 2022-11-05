@@ -2,60 +2,54 @@ import './Graph.css';
 import { Line } from "react-chartjs-2";
 
 function MultiLineGraph() {
-    const lineChartData = {
-        labels: ["October", "November", "December"],
-        datasets: [
-            {
-                data: [8137119, 9431691, 10266674],
-                label: "Infected",
-                borderColor: "#DE4557",
-                fill: true,
-                lineTension: 0.5
+
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top'
             },
-            {
-                data: [1216410, 1371390, 1477380],
-                label: "Deaths",
-                borderColor: "#ff3333",
-                fill: true,
-                lineTension: 0.5
+            title: {
+                display: true,
+                text: 'Total Runs of workflow',
             },
-            {
-                data: [1615610, 1235390, 1777380],
-                label: "Deaths",
-                borderColor: "#ff3333",
-                fill: true,
-                lineTension: 0.5
-            },
-            {
-                data: [1519410, 1478390, 18361750],
-                label: "Deaths",
-                borderColor: "#ff3333",
-                fill: true,
-                lineTension: 0.5
-            }
-        ]
+        },
     };
 
-    return (
-        <Line
-            type="line"
-            width={160}
-            height={60}
-            options={{
-                title: {
-                    display: true,
-                    text: "COVID-19 Cases of Last 6 Months",
-                    fontSize: 20
-                },
-                legend: {
-                    display: true,
-                    position: "top"
-                }
-            }}
-            className='line-graph'
-            data={lineChartData}
-        />
-    );
-};
+
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Dataset 1',
+                data: [3516410, 1371390, 2477380, 3615610, 7235390, 8877380],
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
+            {
+                label: 'Dataset 2',
+                data: [8137119, 9431691, 10266674, 1519410, 1478390, 18361750],
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
+            {
+                label: 'Dataset 2',
+                data: [8137119, 9434691, 12263584, 1315610, 1678390, 19121750],
+                borderColor: 'rgb(94, 65, 129)',
+                backgroundColor: 'rgba(94, 65, 129,0.5)',
+            },
+            {
+                label: 'Dataset 2',
+                data: [9137119, 8471691, 17266674, 1516410, 1098390, 13661750],
+                borderColor: 'rgb(57, 87, 52)',
+                backgroundColor: 'rgba(57, 87, 52,0.5)',
+            },
+        ],
+    };
+    return <Line height={100} options={options} data={data} />;
+}
+
 
 export default MultiLineGraph;
