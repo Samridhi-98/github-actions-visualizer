@@ -4,7 +4,7 @@ function Description() {
     return (
         <>
             <div className='description'>
-                <h4>Description</h4>
+                <h4>Overview</h4>
             </div>
         </>
     )

@@ -2,8 +2,10 @@ import './App.css';
 import Description from './components/description/Description';
 import FeatureList from './components/featureList/FeatureList';
 import Footer from './components/footer/Footer';
+import AreaGraph from './components/graph/AreaGraph';
 import BarGraph from './components/graph/BarGraph';
 import LineGraph from './components/graph/LineGraph';
+import MultiLineGraph from './components/graph/MultiLineGraph';
 import Navbar from './components/navbar/Navbar';
 
 function App() {
@@ -22,8 +24,15 @@ function App() {
             <Description />
           </section>
           <section className='middle-section'>
-            <div className='bar-graph'><BarGraph /></div>
-            <div className='line-graph'><LineGraph /></div>
+            <div className='graph-subdivison1'>
+              <div className='bar-graph'><BarGraph /></div>
+              <div className='line-graph'><LineGraph /></div>
+            </div>
+
+            <div className='graph-subdivison2'>
+              <div className='multiline-graph'><MultiLineGraph /></div>
+              <div className='area-graph'><AreaGraph /></div>
+            </div>
           </section>
         </main>
         <hr></hr>

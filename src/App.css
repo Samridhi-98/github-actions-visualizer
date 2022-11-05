@@ -24,13 +24,23 @@
 }
 
 .middle-section {
-  height: 60vh;
+  min-height: 60vh;
   margin-top: 1vh;
   text-align: center;
   display: flex;
   background-color: #191B1F;
   border-radius: 5px;
   border: 2px solid #282A2F;
+}
+
+.graph-subdivison1{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.graph-subdivison2{
+  flex: 1;
 }
 
 .bar-graph{
@@ -43,6 +53,16 @@
   flex: 1;
   border-radius: 5px;
   /* border: 2px solid #282A2F; */
+}
+
+.area-graph{
+  margin-top: 1vh;
+  border-radius: 5px;
+  /* border: 2px solid #282A2F; */
+}
+
+.multiline-graph{
+  margin-top: 1vh;
 }
 
 .stats{

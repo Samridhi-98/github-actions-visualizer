@@ -1,15 +1,15 @@
 .bar-chart { 
-  display: flex; 
+  /* display: flex; 
   flex-direction: row; 
   align-items: flex-end; 
-  justify-content: center; 
-  margin: 2vh;
+  justify-content: center;  */
+  margin: 1vh;
 }
 
 .line-chart{
-    display: flex; 
+    /* display: flex; 
     flex-direction: row; 
     align-items: flex-end; 
-    justify-content: center; 
-    margin: 2vh;
+    justify-content: center;  */
+    margin: 1vh;
 }

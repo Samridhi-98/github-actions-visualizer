@@ -1,7 +1,7 @@
 import './Graph.css';
 import { Line } from "react-chartjs-2";
 
-function LineGraph() {
+function MultiLineGraph() {
     const lineChartData = {
         labels: ["October", "November", "December"],
         datasets: [
@@ -16,7 +16,20 @@ function LineGraph() {
                 data: [1216410, 1371390, 1477380],
                 label: "Deaths",
                 borderColor: "#ff3333",
-                backgroundColor: "#1C4271",
+                fill: true,
+                lineTension: 0.5
+            },
+            {
+                data: [1615610, 1235390, 1777380],
+                label: "Deaths",
+                borderColor: "#ff3333",
+                fill: true,
+                lineTension: 0.5
+            },
+            {
+                data: [1519410, 1478390, 18361750],
+                label: "Deaths",
+                borderColor: "#ff3333",
                 fill: true,
                 lineTension: 0.5
             }
@@ -45,4 +58,4 @@ function LineGraph() {
     );
 };
 
-export default LineGraph;
+export default MultiLineGraph;
