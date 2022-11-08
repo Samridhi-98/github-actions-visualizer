@@ -26,3 +26,11 @@ h4{
 .card:hover{
   background-color: #282A2F;
 }
+
+@media only screen and (max-width: 900px){
+
+ .feature-list{
+  margin: 2vh  auto;
+ }
+
+}

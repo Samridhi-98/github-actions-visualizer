@@ -5,3 +5,10 @@
 .logo{
     margin: 1vh;
 }
+
+@media only screen and (max-width: 900px){
+
+    .navbar{
+        padding: 0vh;
+    }
+}

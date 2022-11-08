@@ -28,8 +28,8 @@
   margin-top: 1vh;
   text-align: center;
   display: flex;
-  /* background-color: #191B1F; */
-  /* border-radius: 5px;
+  /* background-color: #191B1F;
+  border-radius: 5px;
   border: 2px solid #282A2F; */
 }
 
@@ -50,19 +50,6 @@
   background-color: #191B1F;
 }
 
-.stats{
-  flex: 1;
-  border-radius:5px;
-  text-align: center;
-  border: 2px solid #282A2F;
-  background-color: #191B1F;
-}
-
-.pie-graph{
-  width: 60%;
-  height: 60%;
-  margin: auto;
-}
 
 .footer{
   padding: 5vh;
@@ -73,4 +60,44 @@ hr{
   width: 80%;
   border-color: #282A2F;
   margin: 1vh auto;
+}
+
+
+@media only screen and (max-width: 810px){
+
+  .main-content{
+    padding: 0vh;
+    margin:  2vh auto;
+
+  }
+
+  .top-section{
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  .middle-section{
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  .graph-subdivison1{
+    display: flex;
+    flex-direction: column;
+    padding: 1vh;
+  } 
+  
+  .graph-subdivison2{
+    display: flex;
+    flex-direction: column;
+    padding: 1vh;
+  }
+
+  .bar-graph, .line-graph, .area-graph, .multiline-graph{
+    margin: auto;
+  }
+
+  .footer{
+    padding: 0vh;
+  }
 }

@@ -18,3 +18,11 @@ h4{
 .content{
   padding: 2vh;
 }
+
+@media only screen and (max-width: 900px){
+
+  .description{
+    margin: 2vh auto;
+  }
+
+}

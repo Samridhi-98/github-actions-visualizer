@@ -6,8 +6,8 @@ import AreaGraph from './components/graph/AreaGraph';
 import BarGraph from './components/graph/BarGraph';
 import LineGraph from './components/graph/LineGraph';
 import MultiLineGraph from './components/graph/MultiLineGraph';
-// import PieGraph from './components/graph/PieGraph';
 import Navbar from './components/navbar/Navbar';
+import Statistics from './components/statistics/Statistics';
 
 function App() {
   return (
@@ -19,12 +19,7 @@ function App() {
         <main id='main-content' className='main-content'>
           <section className='top-section'>
             <FeatureList />
-            <div className='stats'>
-              <h4>Statistics</h4>
-              <div className='pie-graph'>
-                {/* <PieGraph /> */}
-              </div>
-            </div>
+            <Statistics />
             <Description />
           </section>
           <section className='middle-section'>
