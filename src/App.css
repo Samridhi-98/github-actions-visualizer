@@ -52,8 +52,9 @@
 
 
 .footer{
-  padding: 5vh;
-  text-align: center;
+  height: 10vh;
+  /* padding: 5vh; */
+  /* text-align: center; */
 }
 
 hr{
@@ -95,9 +96,5 @@ hr{
 
   .bar-graph, .line-graph, .area-graph, .multiline-graph{
     margin: auto;
-  }
-
-  .footer{
-    padding: 0vh;
   }
 }
