@@ -1,10 +1,13 @@
 import './FeatureList.css';
 import { workflowList } from '../../data/workflowList';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
 
 function FeatureList() {
 
     const [workflowData, setworkflowData] = useState(workflowList);
+    const { addWorkflow } = useContext(AppContext);
 
     const updateWorkflowToState = (index) => {
         const newTitle = (workflowData[index].title.includes('✓ ')) ? workflowData[index].title.replace('✓ ', '') : '✓ ' + workflowData[index].title;
@@ -24,7 +27,7 @@ function FeatureList() {
     const renderWorkflow = () => {
         const card = workflowData.map((workflowData, index) => {
             return (
-                <div className='card' key={workflowData.id} onClick={() => updateWorkflowToState(index)}> {workflowData.title} </div>
+                <div className='card' key={workflowData.id} onClick={() => { updateWorkflowToState(index); addWorkflow(workflowList[index]) }}> {workflowData.title} </div>
             )
         })
         return card;
