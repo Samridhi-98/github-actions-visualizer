@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './App.css';
 import Description from './components/description/Description';
 import FeatureList from './components/featureList/FeatureList';
@@ -10,6 +11,36 @@ import Navbar from './components/navbar/Navbar';
 import Statistics from './components/statistics/Statistics';
 
 function App() {
+
+  const repoWorkflowListApi = "https://api.github.com/repos/asyncapi/modelina/actions/runs";
+  const orgRepoListApi = "https://api.github.com/orgs/asyncapi/repos";
+
+  useEffect(() => {
+    const fetchRepoList = async () => {
+      try {
+        const response = await fetch(orgRepoListApi, { method: 'get' });
+        const repoList = await response.json();
+        console.log("repo list-> ", repoList);
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }
+    const fetchWorkflow = async () => {
+      try {
+        const response = await fetch(repoWorkflowListApi, { method: 'get' });
+        const data = await response.json();
+        console.log("Data -> ", data);
+
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }
+    fetchRepoList();
+    fetchWorkflow();
+  }, []);
+
   return (
     <>
       <div className='app'>

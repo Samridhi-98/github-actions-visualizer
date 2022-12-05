@@ -2,7 +2,7 @@ export const workflowList = [
     {
         id: 1,
         title: 'Add good first issue',
-        name: 'add-good-first-issue-labels'
+        name: "Add 'Good First Issue' and 'area/*' labels"
     },
     {
         id: 2,
@@ -12,7 +12,7 @@ export const workflowList = [
     {
         id: 3,
         title: 'Automerge for humans merging',
-        name: 'automerge-for-humans-merging'
+        name: 'Automerge For Humans'
     },
     {
         id: 4,
@@ -37,7 +37,7 @@ export const workflowList = [
     {
         id: 8,
         title: 'Bump',
-        name: 'bump'
+        name: 'Automerge release bump PR'
     },
     {
         id: 9,
@@ -47,22 +47,22 @@ export const workflowList = [
     {
         id: 10,
         title: 'Help Command',
-        name: 'help-command'
+        name: 'Create help comment'
     },
     {
         id: 11,
         title: 'If docker PR testing',
-        name: 'if-docker-pr-testing'
+        name: 'PR testing - if Docker'
     },
     {
         id: 12,
         title: 'If go PR testing',
-        name: 'if-go-pr-testing'
+        name: 'PR testing - if Go project'
     },
     {
         id: 13,
         title: 'If nodejs PR testing',
-        name: 'if-nodejs-pr-testing'
+        name: 'PR testing - if Node project'
     },
     {
         id: 14,
@@ -82,22 +82,22 @@ export const workflowList = [
     {
         id: 17,
         title: 'Link check cron',
-        name: 'link-check-cron'
+        name: 'Link Check Cron'
     },
     {
         id: 18,
         title: 'Link check pr',
-        name: 'link-check-pr'
+        name: 'Link Check PR'
     },
     {
         id: 19,
         title: 'Lint pr title',
-        name: 'lint-pr-title'
+        name: 'Lint PR title'
     },
     {
         id: 20,
         title: 'Notify TSC members',
-        name: 'notify-tsc-members-mention'
+        name: 'Notify slack and email subscribers whenever TSC members are mentioned in GitHub'
     },
     {
         id: 21,
@@ -107,7 +107,7 @@ export const workflowList = [
     {
         id: 22,
         title: 'Sentiment Analysis',
-        name: 'sentiment-analysis'
+        name: 'Sentiment Analysis'
     },
     {
         id: 23,
@@ -119,6 +119,4 @@ export const workflowList = [
         title: 'Welcome first time contrib',
         name: 'welcome-first-time-contrib'
     },
-
-
 ]
