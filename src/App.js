@@ -10,6 +10,8 @@ import MultiLineGraph from './components/graph/MultiLineGraph';
 import Navbar from './components/navbar/Navbar';
 import Statistics from './components/statistics/Statistics';
 import { Octokit } from "@octokit/rest";
+import { useContext } from 'react';
+import { AppContext } from './context/AppContext';
 
 const octokit = new Octokit({
   auth: process.env.REACT_APP_GITHUB_TOKEN
@@ -21,14 +23,16 @@ function App() {
   // const repoWorkflowListApi = "https://api.github.com/repos/asyncapi/modelina/actions/runs";
   // const orgRepoListApi = "https://api.github.com/orgs/asyncapi/repos";
 
+  const { setRepository } = useContext(AppContext);
+
   useEffect(() => {
     const listRepo = async () => {
-      // const { data } = await octokit.rest.repos.listForOrg({
-      //   org: "asyncapi",
-      //   type: "public",
-      //   per_page: 100
-      // })
-      // console.log(data.name)
+      const { data } = await octokit.rest.repos.listForOrg({
+        org: "asyncapi",
+        per_page: 100
+      })
+      // console.log(data)
+      setRepository(data);
     }
     listRepo();
     // const fetchWorkflow = async () => {
@@ -56,6 +60,7 @@ function App() {
     // }
     // fetchWorkflow();
     // demo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

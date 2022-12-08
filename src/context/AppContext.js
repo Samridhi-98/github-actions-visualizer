@@ -8,11 +8,15 @@ function AppProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const addWorkflow = (workflow) => {
-        dispatch({ type: 'ADD_WORKFLOW', payload: { workflowList: workflow } });
+        dispatch({ type: 'ADD_WORKFLOW', payload: { selectedWorkflow: workflow } });
+    }
+
+    const setRepository = (repoList) => {
+        dispatch({ type: 'SET_REPOSITORY', payload: { repoList: repoList } })
     }
 
     return (
-        <AppContext.Provider value={{ state, addWorkflow }}>
+        <AppContext.Provider value={{ state, addWorkflow, setRepository }}>
             {children}
         </AppContext.Provider>
     )
