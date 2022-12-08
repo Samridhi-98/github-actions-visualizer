@@ -3,8 +3,8 @@ export const initialState = {
 }
 
 export function reducer(state, action) {
-    // console.log("inside reducer state: ", state);
-    // console.log("inside reducer action: ", action.payload);
+    console.log("inside reducer state: ", state);
+    console.log("inside reducer action: ", action.payload);
     switch (action.type) {
         case 'ADD_WORKFLOW':
             const index = (state.workflowList).indexOf(action.payload.workflowList);

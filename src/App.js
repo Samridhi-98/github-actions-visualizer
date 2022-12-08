@@ -9,36 +9,53 @@ import LineGraph from './components/graph/LineGraph';
 import MultiLineGraph from './components/graph/MultiLineGraph';
 import Navbar from './components/navbar/Navbar';
 import Statistics from './components/statistics/Statistics';
+import { Octokit } from "@octokit/rest";
+
+const octokit = new Octokit({
+  auth: process.env.REACT_APP_GITHUB_TOKEN
+});
 
 function App() {
 
-  const repoWorkflowListApi = "https://api.github.com/repos/asyncapi/modelina/actions/runs";
-  const orgRepoListApi = "https://api.github.com/orgs/asyncapi/repos";
+  // const [workflowList, setWorkFlow] = useState([]);
+  // const repoWorkflowListApi = "https://api.github.com/repos/asyncapi/modelina/actions/runs";
+  // const orgRepoListApi = "https://api.github.com/orgs/asyncapi/repos";
 
   useEffect(() => {
-    const fetchRepoList = async () => {
-      try {
-        const response = await fetch(orgRepoListApi, { method: 'get' });
-        const repoList = await response.json();
-        console.log("repo list-> ", repoList);
-      }
-      catch (err) {
-        console.log(err);
-      }
+    const listRepo = async () => {
+      // const { data } = await octokit.rest.repos.listForOrg({
+      //   org: "asyncapi",
+      //   type: "public",
+      //   per_page: 100
+      // })
+      // console.log(data.name)
     }
-    const fetchWorkflow = async () => {
-      try {
-        const response = await fetch(repoWorkflowListApi, { method: 'get' });
-        const data = await response.json();
-        console.log("Data -> ", data);
-
-      }
-      catch (err) {
-        console.log(err);
-      }
-    }
-    fetchRepoList();
-    fetchWorkflow();
+    listRepo();
+    // const fetchWorkflow = async () => {
+    //   const { data } = await octokit.actions.listRepoWorkflows({
+    //     owner: "asyncapi",
+    //     repo: "modelina",
+    //   })
+    //   setWorkFlow(data.workflows);
+    // }
+    // console.log(workflowList);
+    // const demo = () => {
+    //   workflowList.map(async workflow => {
+    //     const workflowId = workflow.id;
+    //     await octokit.actions.listWorkflowRuns({
+    //       owner: "asyncapi",
+    //       repo: "modelina",
+    //       workflow_id: workflowId,
+    //       per_page: 100,
+    //     }).then(data => {
+    //       console.log("records-> ", data);
+    //     }).catch(err => {
+    //       console.log("error: ", err);
+    //     })
+    //   })
+    // }
+    // fetchWorkflow();
+    // demo();
   }, []);
 
   return (
