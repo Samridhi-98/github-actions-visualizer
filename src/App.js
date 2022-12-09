@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Description from './components/description/Description';
 import FeatureList from './components/featureList/FeatureList';
@@ -19,30 +19,24 @@ const octokit = new Octokit({
 
 function App() {
 
-  // const [workflowList, setWorkFlow] = useState([]);
+  const [workflowList, setWorkFlow] = useState([]);
+  // const [repo, setRepo] = useState([]);
   // const repoWorkflowListApi = "https://api.github.com/repos/asyncapi/modelina/actions/runs";
   // const orgRepoListApi = "https://api.github.com/orgs/asyncapi/repos";
 
-  const { setRepository } = useContext(AppContext);
+  const { setRepository, state } = useContext(AppContext);
+  const list = ['spec', 'website', 'spec-json-schemas', 'generator', 'asyncapi-react', 'parser-go', 'parser-js', 'extensions-catalog', 'converter-js', 'converter-go', 'bindings', 'enterprise-patterns', 'tck', 'studio', 'raml-dt-schema-parser', 'openapi-schema-parser', 'html-template', 'markdown-template', 'nodejs-template', 'nodejs-ws-template', 'java-spring-template', 'java-spring-cloud-stream-template', 'python-paho-template', 'github-action-for-generator', 'ts-nats-template', 'conference-website', '.github', 'generator-filters', 'jasyncapi', 'generator-hooks', 'avro-schema-parser', 'dotnet-nats-template', 'go-watermill-template', 'vs-asyncapi-preview', 'shape-up-process', 'template-for-generator-templates', 'generator-react-sdk', 'modelina', 'asyncapi-php-template', 'cli', 'event-gateway', 'community', 'simulator', 'template-for-go-projects', 'parser-api', 'training', 'cupid', 'diff', 'optimizer', 'chatbot', 'glee', 'glee-hello-world', 'create-glee-app', 'bundler', 'server-api', 'brand', 'infra', 'java-template', 'design-system', 'dotnet-rabbitmq-template', 'EDAVisualiser', 'problem', 'jasyncapi-idea-plugin'];
 
   useEffect(() => {
-    const listRepo = async () => {
+    (async function listRepo() {
       const { data } = await octokit.rest.repos.listForOrg({
         org: "asyncapi",
         per_page: 100
       })
-      // console.log(data)
+      //  console.log(data)
+      // setRepo(data.map(repository => repository.name));
       setRepository(data);
-    }
-    listRepo();
-    // const fetchWorkflow = async () => {
-    //   const { data } = await octokit.actions.listRepoWorkflows({
-    //     owner: "asyncapi",
-    //     repo: "modelina",
-    //   })
-    //   setWorkFlow(data.workflows);
-    // }
-    // console.log(workflowList);
+    })();
     // const demo = () => {
     //   workflowList.map(async workflow => {
     //     const workflowId = workflow.id;
@@ -58,10 +52,22 @@ function App() {
     //     })
     //   })
     // }
-    // fetchWorkflow();
     // demo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    (function fetchWorkflow() {
+      state.repoList.map(async repository => {
+        const { data } = await octokit.actions.listRepoWorkflows({
+          owner: "asyncapi",
+          repo: repository,
+        })
+        setWorkFlow(data.workflows);
+        console.log(repository, " -> ", data.workflows);
+      })
+    })();
+  }, [state.repoList])
 
   return (
     <>
