@@ -44,25 +44,23 @@ function App() {
       // console.log("state: ", state)
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.selectedRepo])
+  }, [state.selectedRepo]);
 
-  // useEffect(() => {
-  //   const result = state.repoList.map(async repository => {
-  //     // const workflowId = workflow.id;
-  //     await octokit.actions.listWorkflowRuns({
-  //       owner: "asyncapi",
-  //       repo: repository,
-  //       // workflow_id: workflowId,
-  //       per_page: 100,
-  //     }).then(data => {
-  //       console.log("records-> ", data);
-  //     }).catch(err => {
-  //       console.log(err);
-  //     })
-  //   })
-  //   console.log(result);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
+  useEffect(() => {
+    (function fetchSpecifiedWorkflowRuns() {
+      state.selectedWorkflowList.map(async workflow => {
+        const workflowId = workflow.id;
+        const { data } = await octokit.actions.listWorkflowRuns({
+          owner: "asyncapi",
+          repo: state.selectedRepo,
+          workflow_id: workflowId,
+          per_page: 100,
+        })
+        console.log("records: ", data);
+      })
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.selectedWorkflowList]);
 
   return (
     <>
