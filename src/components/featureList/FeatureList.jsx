@@ -1,33 +1,34 @@
 import './FeatureList.css';
-import { workflowList } from '../../data/workflowList';
-import { useState } from 'react';
 import { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 
 function FeatureList() {
 
-    const [workflowData, setworkflowData] = useState(workflowList);
-    const { addWorkflow } = useContext(AppContext);
+    // eslint-disable-next-line no-unused-vars
+    const { addWorkflow, state } = useContext(AppContext);
+    // const [workflowData, setworkflowData] = useState(state.repoWorkflowList);
 
-    const updateWorkflowTitle = (index) => {
-        const newTitle = (workflowData[index].title.includes('✓ ')) ? workflowData[index].title.replace('✓ ', '') : '✓ ' + workflowData[index].title;
+    // const updateWorkflowTitle = (index) => {
+    //     const newTitle = (workflowData[index].title.includes('✓ ')) ? workflowData[index].title.replace('✓ ', '') : '✓ ' + workflowData[index].title;
 
-        setworkflowData(prevState => {
-            const newState = prevState.map(workflowData => {
-                if (workflowData.id === index + 1) {
-                    return { ...workflowData, title: newTitle };
-                }
-                return workflowData;
-            });
-            return newState;
-        });
-        // console.log("workflowData: ", workflowData);
-    };
+    //     setworkflowData(prevState => {
+    //         const newState = prevState.map(workflowData => {
+    //             if (workflowData.id === index + 1) {
+    //                 return { ...workflowData, title: newTitle };
+    //             }
+    //             return workflowData;
+    //         });
+    //         return newState;
+    //     });
+    //     // console.log("workflowData: ", workflowData);
+    // };
 
     const renderWorkflow = () => {
-        const card = workflowData.map((workflowData, index) => {
+        // console.log("inside feature: ", state)
+        const card = state.repoWorkflowList.map((workflowData, index) => {
             return (
-                <div className='card' key={workflowData.id} onClick={() => { updateWorkflowTitle(index); addWorkflow(workflowList[index]) }}> {workflowData.title} </div>
+                <div className='card' key={workflowData.id}> {workflowData.name} </div>
+                // onClick={() => { updateWorkflowTitle(index); addWorkflow(workflowList[index]) }}
             )
         })
         return card;
