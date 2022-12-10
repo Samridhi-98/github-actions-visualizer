@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import Description from './components/description/Description';
 import FeatureList from './components/featureList/FeatureList';
@@ -19,13 +19,12 @@ const octokit = new Octokit({
 
 function App() {
 
-  const [workflowList, setWorkFlow] = useState([]);
   // const [repo, setRepo] = useState([]);
   // const repoWorkflowListApi = "https://api.github.com/repos/asyncapi/modelina/actions/runs";
   // const orgRepoListApi = "https://api.github.com/orgs/asyncapi/repos";
 
-  const { setRepository, state } = useContext(AppContext);
-  const list = ['spec', 'website', 'spec-json-schemas', 'generator', 'asyncapi-react', 'parser-go', 'parser-js', 'extensions-catalog', 'converter-js', 'converter-go', 'bindings', 'enterprise-patterns', 'tck', 'studio', 'raml-dt-schema-parser', 'openapi-schema-parser', 'html-template', 'markdown-template', 'nodejs-template', 'nodejs-ws-template', 'java-spring-template', 'java-spring-cloud-stream-template', 'python-paho-template', 'github-action-for-generator', 'ts-nats-template', 'conference-website', '.github', 'generator-filters', 'jasyncapi', 'generator-hooks', 'avro-schema-parser', 'dotnet-nats-template', 'go-watermill-template', 'vs-asyncapi-preview', 'shape-up-process', 'template-for-generator-templates', 'generator-react-sdk', 'modelina', 'asyncapi-php-template', 'cli', 'event-gateway', 'community', 'simulator', 'template-for-go-projects', 'parser-api', 'training', 'cupid', 'diff', 'optimizer', 'chatbot', 'glee', 'glee-hello-world', 'create-glee-app', 'bundler', 'server-api', 'brand', 'infra', 'java-template', 'design-system', 'dotnet-rabbitmq-template', 'EDAVisualiser', 'problem', 'jasyncapi-idea-plugin'];
+  const { setRepository, setRepoWorkflowList, state } = useContext(AppContext);
+  // const list = ['spec', 'website', 'spec-json-schemas', 'generator', 'asyncapi-react', 'parser-go', 'parser-js', 'extensions-catalog', 'converter-js', 'converter-go', 'bindings', 'enterprise-patterns', 'tck', 'studio', 'raml-dt-schema-parser', 'openapi-schema-parser', 'html-template', 'markdown-template', 'nodejs-template', 'nodejs-ws-template', 'java-spring-template', 'java-spring-cloud-stream-template', 'python-paho-template', 'github-action-for-generator', 'ts-nats-template', 'conference-website', '.github', 'generator-filters', 'jasyncapi', 'generator-hooks', 'avro-schema-parser', 'dotnet-nats-template', 'go-watermill-template', 'vs-asyncapi-preview', 'shape-up-process', 'template-for-generator-templates', 'generator-react-sdk', 'modelina', 'asyncapi-php-template', 'cli', 'event-gateway', 'community', 'simulator', 'template-for-go-projects', 'parser-api', 'training', 'cupid', 'diff', 'optimizer', 'chatbot', 'glee', 'glee-hello-world', 'create-glee-app', 'bundler', 'server-api', 'brand', 'infra', 'java-template', 'design-system', 'dotnet-rabbitmq-template', 'EDAVisualiser', 'problem', 'jasyncapi-idea-plugin'];
 
   useEffect(() => {
     (async function listRepo() {
@@ -37,22 +36,6 @@ function App() {
       // setRepo(data.map(repository => repository.name));
       setRepository(data);
     })();
-    // const demo = () => {
-    //   workflowList.map(async workflow => {
-    //     const workflowId = workflow.id;
-    //     await octokit.actions.listWorkflowRuns({
-    //       owner: "asyncapi",
-    //       repo: "modelina",
-    //       workflow_id: workflowId,
-    //       per_page: 100,
-    //     }).then(data => {
-    //       console.log("records-> ", data);
-    //     }).catch(err => {
-    //       console.log("error: ", err);
-    //     })
-    //   })
-    // }
-    // demo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -63,11 +46,30 @@ function App() {
           owner: "asyncapi",
           repo: repository,
         })
-        setWorkFlow(data.workflows);
-        console.log(repository, " -> ", data.workflows);
+        setRepoWorkflowList(data.workflows);
+        // console.log(repository, " -> ", data.workflows);
       })
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.repoList])
+
+  // useEffect(() => {
+  //   const result = state.repoList.map(async repository => {
+  //     // const workflowId = workflow.id;
+  //     await octokit.actions.listWorkflowRuns({
+  //       owner: "asyncapi",
+  //       repo: repository,
+  //       // workflow_id: workflowId,
+  //       per_page: 100,
+  //     }).then(data => {
+  //       console.log("records-> ", data);
+  //     }).catch(err => {
+  //       console.log(err);
+  //     })
+  //   })
+  //   console.log(result);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
 
   return (
     <>

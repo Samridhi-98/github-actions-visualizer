@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import AppProvider from './context/AppContext';
-import { CronJob } from './CronJob';
 
 ChartJS.register(...registerables);
 
@@ -17,7 +16,6 @@ root.render(
   <React.StrictMode>
     <AppProvider>
       <App />
-      <CronJob />
     </AppProvider>
   </React.StrictMode>
 );

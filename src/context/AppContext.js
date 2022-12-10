@@ -15,8 +15,12 @@ function AppProvider({ children }) {
         dispatch({ type: 'SET_REPOSITORY', payload: { repoList: repoList } })
     }
 
+    const setRepoWorkflowList = (repoWorkflow) => {
+        dispatch({ type: 'SET_REPO_WORKFLOW', payload: { repoWorkflowList: repoWorkflow } })
+    }
+
     return (
-        <AppContext.Provider value={{ state, addWorkflow, setRepository }}>
+        <AppContext.Provider value={{ state, addWorkflow, setRepository, setRepoWorkflowList }}>
             {children}
         </AppContext.Provider>
     )
