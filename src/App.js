@@ -19,7 +19,7 @@ const octokit = new Octokit({
 
 function App() {
 
-  const { setRepository, setRepoWorkflowList, state } = useContext(AppContext);
+  const { setRepository, setRepoWorkflowList, setWorkflowRuns, state } = useContext(AppContext);
 
   useEffect(() => {
     (async function listRepo() {
@@ -57,6 +57,7 @@ function App() {
           per_page: 100,
         })
         console.log("records: ", data);
+        setWorkflowRuns(data.workflow_runs);
       })
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps

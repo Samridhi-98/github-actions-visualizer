@@ -12,15 +12,19 @@ function AppProvider({ children }) {
     }
 
     const setRepository = (repoList) => {
-        dispatch({ type: 'SET_REPOSITORY', payload: { repoList: repoList } })
+        dispatch({ type: 'SET_REPOSITORY', payload: { repoList: repoList } });
     }
 
     const setRepoWorkflowList = (repoWorkflow) => {
-        dispatch({ type: 'SET_REPO_WORKFLOW', payload: { repoWorkflowList: repoWorkflow } })
+        dispatch({ type: 'SET_REPO_WORKFLOW', payload: { repoWorkflowList: repoWorkflow } });
+    }
+
+    const setWorkflowRuns = (workflowRuns) => {
+        dispatch({ type: 'SET_WORKFLOW_RUNS', payload: { workflowRunsData: workflowRuns } });
     }
 
     return (
-        <AppContext.Provider value={{ state, addWorkflow, setRepository, setRepoWorkflowList }}>
+        <AppContext.Provider value={{ state, addWorkflow, setRepository, setRepoWorkflowList, setWorkflowRuns }}>
             {children}
         </AppContext.Provider>
     )

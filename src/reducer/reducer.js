@@ -2,7 +2,8 @@ export const initialState = {
     selectedWorkflowList: [],
     repoList: [],
     repoWorkflowList: [],
-    selectedRepo: ""
+    selectedRepo: "",
+    workflowRunsData: []
 }
 
 export function reducer(state, action) {
@@ -31,6 +32,12 @@ export function reducer(state, action) {
                 ...state,
                 selectedWorkflowList: [action.payload.repoWorkflowList[0], action.payload.repoWorkflowList[1]],
                 repoWorkflowList: action.payload.repoWorkflowList
+            }
+        case 'SET_WORKFLOW_RUNS':
+            // console.log("action: ", action.payload.workflowRunsData);
+            return {
+                ...state,
+                workflowRunsData: action.payload.workflowRunsData
             }
         default:
             return state;
