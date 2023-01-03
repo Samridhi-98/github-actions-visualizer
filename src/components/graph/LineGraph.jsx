@@ -1,13 +1,59 @@
 import './Graph.css';
 import { Line } from "react-chartjs-2";
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
+import { useEffect } from 'react';
 
 function LineGraph() {
 
+    const [workflowRunsStats, setWorkflowRunsStats] = useState({});
     const { state } = useContext(AppContext);
 
+    useEffect(() => {
+        const stats = {
+            conclusion: {
+                success: 0,
+                failure: 0,
+                cancelled: 0,
+                skipped: 0,
+                startup_failure: 0
+            },
+            durations: {
+                success: [0],
+                failure: [0],
+                cancelled: [0],
+                skipped: [0],
+                startup_failure: [0],
+            },
+            earliestRun: new Date(8640000000000000).getTime(),
+            latestRun: new Date(-8640000000000000).getTime()
+        }
+        // console.log(state.workflowRunsData);
+        for (const run of state.workflowRunsData) {
+            // console.log(run);
+            if (!run.conclusion) {
+                console.log("run: ", run.conclusion);
+                continue;
+            }
+            stats.conclusion[run.conclusion] += 1
+            const createdAtTime = Date.parse(run.created_at)
+            const updatedAtTime = Date.parse(run.updated_at)
+            const durationMs = updatedAtTime - createdAtTime
+            if (stats.durations[run.conclusion]?.push) {
+                stats.durations[run.conclusion].push(durationMs / 1000)
+            }
+            stats.earliestRun = Math.min(stats.earliestRun, createdAtTime)
+            stats.latestRun = Math.max(stats.latestRun, createdAtTime)
+        }
 
+        // console.log("stats: ", stats)
+        setWorkflowRunsStats(stats);
+        if (workflowRunsStats.durations) {
+            // console.log(workflowRunsStats.durations.success.map(successDuration => { return successDuration / 60 }))
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.workflowRunsData])
 
     const options = {
         responsive: true,
