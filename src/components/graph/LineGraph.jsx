@@ -1,7 +1,7 @@
 import './Graph.css';
 import { Line } from "react-chartjs-2";
 import { useContext, useState } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { AppContext } from '../../context/AppContext.js';
 import { useEffect } from 'react';
 
 function LineGraph() {

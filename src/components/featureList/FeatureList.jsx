@@ -1,6 +1,6 @@
 import './FeatureList.css';
 import { useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
+import { AppContext } from '../../context/AppContext.js';
 
 function FeatureList() {
 
