@@ -19,6 +19,8 @@ const repositoryAdapter = new JSONFile(repositoryFile);
 const repositoryDB = new Low(repositoryAdapter);
 repositoryDB.data ||= { repositoryList: [] };
 
+let list = [];
+
 const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
 });
@@ -75,4 +77,75 @@ async function fetchWorkflowData() {
     }
 }
 
-fetchRepositories();
+// fetchRepositories();
+
+async function filterWorkflowStats(){
+
+    await workflowDB.read();
+
+    // console.log(workflowDB.data.workflowRuns);
+
+    let stats = {
+        conclusion: {
+            success: 0,
+            failure: 0,
+            cancelled: 0,
+            skipped: 0,
+            startup_failure: 0,
+            action_required: 0
+        },
+        durations: {
+            success: [],
+            failure: [],
+            cancelled: [],
+            skipped: [],
+            startup_failure: [],
+        },
+        earliestRun: new Date(8640000000000000).getTime(),
+        latestRun: new Date(-8640000000000000).getTime()
+    }
+    
+    for (const run of workflowDB.data.workflowRuns) {
+        // console.log(run);
+        stats.conclusion[run.conclusion] += 1
+        const createdAtTime = Date.parse(run.created_at)
+        const updatedAtTime = Date.parse(run.updated_at)
+        const durationMs = updatedAtTime - createdAtTime
+        if (stats.durations[run.conclusion]?.push) {
+            stats.durations[run.conclusion].push(durationMs / 1000)
+        }
+        stats.earliestRun = Math.min(stats.earliestRun, createdAtTime)
+        stats.latestRun = Math.max(stats.latestRun, createdAtTime)
+    }
+    console.log("stats: ", stats)
+}
+
+async function createWorkflowCountList(){
+
+    await workflowDB.read();
+
+    for(const data of workflowDB.data.workflowRuns){
+
+        let run = {
+            "name" : data.name,
+            "frequency" : 0
+        };
+
+        const pair = list.find(workflow => workflow.name === data.name);
+        const index = list.indexOf(pair);
+
+        if(pair === undefined){
+            list.push(run)
+        }
+        else{
+            list[index].frequency += 1;
+        }
+    }
+
+    // console.log("list: ", list);
+
+    // filterWorkflowStats();
+
+}
+
+createWorkflowCountList();
