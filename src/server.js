@@ -7,18 +7,6 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-const workflowFile = join(__dirname, 'workflowRuns.json');
-const workflowAdapter = new JSONFile(workflowFile);
-const workflowDB = new Low(workflowAdapter);
-workflowDB.data ||= { workflowRuns: [] };
-
-const repositoryFile = join(__dirname, 'repository.json');
-const repositoryAdapter = new JSONFile(repositoryFile);
-const repositoryDB = new Low(repositoryAdapter);
-repositoryDB.data ||= { repositoryList: [] };
-
 let list = [];
 
 let stats = {
@@ -45,6 +33,19 @@ const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
 });
 
+function createFile(filename){
+    const __dirname = dirname(fileURLToPath(import.meta.url));
+    const file = join(__dirname, filename);
+    const adapter = new JSONFile(file);
+
+    return adapter;
+}
+
+const repository = new Low(createFile('repository.json'));
+repository.data ||= { list: [] };
+
+const workflow = new Low(createFile('workflowRuns.json'));
+workflow.data ||= { list: [] };
 
 async function fetchRepositories() {
 
@@ -53,15 +54,15 @@ async function fetchRepositories() {
         per_page: 100
     })
 
-    repositoryDB.data.repositoryList = data.map(repository => repository.name);
+   repository.data.list = data.map(repository => repository.name);
 
-    await repositoryDB.write();
+    await repository.write();
     await fetchWorkflowData();
 }
 
 async function fetchWorkflowData() {
 
-    const repositories = repositoryDB.data.repositoryList;
+    const repositories = repository.data.list;
 
     for (let index = 0; index < repositories.length; index++) {
         const { data } = await octokit.rest.actions.listWorkflowRunsForRepo({
@@ -72,7 +73,7 @@ async function fetchWorkflowData() {
 
         // eslint-disable-next-line array-callback-return
         data.workflow_runs.map(run => {
-            let workflow = {
+            let data = {
                 "id": run.id,
                 "name": run.name,
                 "repository_name": run.repository.name,
@@ -86,20 +87,21 @@ async function fetchWorkflowData() {
                 "run_started_at": run.run_started_at,
             }
 
-            workflowDB.data.workflowRuns.push(workflow);
+            workflow.data.list.push(data);
         })
 
-        await workflowDB.write();
+        await workflow.write();
     }
 }
 
-// fetchRepositories();
+fetchRepositories();
 
+// eslint-disable-next-line no-unused-vars
 async function filterWorkflowStats(){
 
-    await workflowDB.read();
+    await workflow.read();
   
-    for (const run of workflowDB.data.workflowRuns) {
+    for (const run of workflow.data.list) {
         stats.conclusion[run.conclusion] += 1
         const createdAtTime = Date.parse(run.created_at)
         const updatedAtTime = Date.parse(run.updated_at)
@@ -116,13 +118,13 @@ async function filterWorkflowStats(){
 
 async function createWorkflowCountList(){
 
-    await workflowDB.read();
+    await workflow.read();
 
-    for(const data of workflowDB.data.workflowRuns){
+    for(const data of workflow.data.list){
 
         let run = {
             "name" : data.name,
-            "frequency" : 0
+            "frequency" : 1
         };
 
         const pair = list.find(workflow => workflow.name === data.name);
@@ -138,7 +140,7 @@ async function createWorkflowCountList(){
 
     console.log("list: ", list);
 
-    // filterWorkflowStats();
+    filterWorkflowStats();
 
 }
 
