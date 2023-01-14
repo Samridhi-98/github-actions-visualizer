@@ -1,35 +1,67 @@
 import './Graph.css';
 import { Line } from 'react-chartjs-2';
-
-export const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top'
-        },
-        title: {
-            display: true,
-            text: 'Average Runtime',
-        },
-    },
-};
-
-const labels = ['January', 'February', 'March', 'April', 'May'];
-
-export const data = {
-    labels,
-    datasets: [
-        {
-            fill: true,
-            label: 'Dataset',
-            data: [1216410, 1371390, 1477380, 1234567, 1347645],
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-    ],
-};
+import workflow from '../../workflowRuns.json';
 
 function AreaGraph() {
+
+    let list = [];
+
+    const workflowCountList = () => {
+
+        for (const data of workflow.list) {
+
+            let run = {
+                "name": data.name,
+                "frequency": 1
+            };
+
+            const pair = list.find(workflow => workflow.name === data.name);
+            const index = list.indexOf(pair);
+
+            if (pair === undefined) {
+                list.push(run)
+            }
+            else {
+                list[index].frequency += 1;
+            }
+        }
+        list.sort(() => Math.random() - 0.5);
+
+        return list;
+    }
+
+    workflowCountList();
+
+    console.log("list: ", (list.map(data => { return (data.name).substring(0, 10) })));
+
+    const labels = (list.map(data => data.name));
+
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top'
+            },
+            title: {
+                display: true,
+                text: 'Workflows run per day',
+            },
+        },
+    };
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                fill: true,
+                label: 'Workflows',
+                data: (list.map(data => data.frequency)),
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
+        ],
+    };
+
     return <Line height={100} options={options} data={data} />;
 }
 

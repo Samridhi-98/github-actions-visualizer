@@ -33,7 +33,7 @@ const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
 });
 
-function createFile(filename){
+function createFile(filename) {
     const __dirname = dirname(fileURLToPath(import.meta.url));
     const file = join(__dirname, filename);
     const adapter = new JSONFile(file);
@@ -54,7 +54,7 @@ async function fetchRepositories() {
         per_page: 100
     })
 
-   repository.data.list = data.map(repository => repository.name);
+    repository.data.list = data.map(repository => repository.name);
 
     await repository.write();
     await fetchWorkflowData();
@@ -97,10 +97,10 @@ async function fetchWorkflowData() {
 fetchRepositories();
 
 // eslint-disable-next-line no-unused-vars
-async function filterWorkflowStats(){
+async function filterWorkflowStats() {
 
     await workflow.read();
-  
+
     for (const run of workflow.data.list) {
         stats.conclusion[run.conclusion] += 1
         const createdAtTime = Date.parse(run.created_at)
@@ -112,28 +112,28 @@ async function filterWorkflowStats(){
         stats.earliestRun = Math.min(stats.earliestRun, createdAtTime)
         stats.latestRun = Math.max(stats.latestRun, createdAtTime)
     }
-    
+
     console.log("stats: ", stats)
 }
 
-async function createWorkflowCountList(){
+async function createWorkflowCountList() {
 
     await workflow.read();
 
-    for(const data of workflow.data.list){
+    for (const data of workflow.data.list) {
 
         let run = {
-            "name" : data.name,
-            "frequency" : 1
+            "name": data.name,
+            "frequency": 1
         };
 
         const pair = list.find(workflow => workflow.name === data.name);
         const index = list.indexOf(pair);
 
-        if(pair === undefined){
+        if (pair === undefined) {
             list.push(run)
         }
-        else{
+        else {
             list[index].frequency += 1;
         }
     }
