@@ -21,7 +21,7 @@ function PieGraph() {
             stats.conclusion[run.conclusion] += 1;
         }
 
-        console.log("stats: ", stats)
+        // console.log("stats: ", stats)
     }
 
     filterWorkflowStats();

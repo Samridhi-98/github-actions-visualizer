@@ -1,7 +1,33 @@
 import './Graph.css';
 import { Bar } from "react-chartjs-2";
+import workflow from '../../workflowRuns.json';
 
 function BarGraph() {
+
+    let stats = {
+        durations: {
+            success: [],
+            failure: [],
+            cancelled: [],
+            skipped: [],
+        }
+    }
+
+    const filterWorkflowStats = () => {
+
+        for (const run of workflow.list) {
+            const createdAtTime = Date.parse(run.created_at)
+            const updatedAtTime = Date.parse(run.updated_at)
+            const durationMs = updatedAtTime - createdAtTime
+            if (stats.durations[run.conclusion]?.push) {
+                stats.durations[run.conclusion].push(durationMs / 1000)
+            }
+        }
+
+        // console.log("stats: ", stats)
+    }
+
+    filterWorkflowStats();
 
     const options = {
         responsive: true,
@@ -11,30 +37,47 @@ function BarGraph() {
             },
             title: {
                 display: true,
-                text: 'Total no of runs per day',
+                text: 'Duration of runs per day',
             },
         },
-    };
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 4
+            }
+        }
+    }
 
-    const labels = ['January', 'February', 'March', 'April', 'May'];
+    const labels = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+
+    const success = Object.values(stats.durations.success).sort(() => Math.random() - 0.5);
+    const failure = Object.values(stats.durations.failure).sort(() => Math.random() - 0.5);
+    // const skipped = Object.values(stats.durations.skipped).sort(() => Math.random() - 0.5);
 
     const data = {
         labels,
         datasets: [
             {
                 label: 'Success',
-                data: [1216410, 1371390, 1477380, 1234567, 1347645],
+                data: success.map(data => data / 60).slice(10),
                 borderColor: 'rgb(255, 99, 132)',
                 borderWidth: 2,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
             {
                 label: 'Failure',
-                data: [8137119, 9434691, 12263584, 1315610, 1678390],
+                data: failure.map(data => data / 60).slice(10),
                 borderColor: 'rgb(53, 162, 235)',
                 borderWidth: 2,
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
             },
+            // {
+            //     label: 'Skipped',
+            //     data: skipped.map(data => data / 60).slice(10),
+            //     borderColor: 'rgb(57, 87, 52)',
+            //     borderWidth: 2,
+            //     backgroundColor: 'rgba(57, 87, 52,0.5)',
+            // },
         ],
     };
     return <Bar height={100} options={options} data={data} />;

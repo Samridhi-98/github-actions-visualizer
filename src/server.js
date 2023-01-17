@@ -25,6 +25,7 @@ repository.data ||= { list: [] };
 const workflow = new Low(createFile('workflowRuns.json'));
 workflow.data ||= { list: [] };
 
+// eslint-disable-next-line no-unused-vars
 async function fetchRepositories() {
 
     const { data } = await octokit.rest.repos.listForOrg({
@@ -72,4 +73,52 @@ async function fetchWorkflowData() {
     }
 }
 
-fetchRepositories();
+// fetchRepositories();
+
+async function filterDatewiseData() {
+
+    await workflow.read();
+
+    let list = new Map();
+
+    for (const data of workflow.data.list) {
+
+        let date = new Date(data.created_at).toLocaleDateString();
+
+        if (!list.has(date)) {
+            list.set(date, []);
+        }
+
+        if (list.get(date).find(workflow => workflow === data.name) === undefined) {
+            list.get(date).push(data.name);
+        }
+    }
+
+    console.log(list);
+}
+
+filterDatewiseData();
+
+async function filterYearWiseData() {
+
+    await workflow.read();
+
+    let list = new Map();
+
+    for (const data of workflow.data.list) {
+
+        let year = new Date(data.created_at).getFullYear();
+
+        if (!list.has(year)) {
+            list.set(year, []);
+        }
+
+        if (list.get(year).find(workflow => workflow === data.name) === undefined) {
+            list.get(year).push(data.name);
+        }
+    }
+
+    console.log(list);
+}
+
+filterYearWiseData();
