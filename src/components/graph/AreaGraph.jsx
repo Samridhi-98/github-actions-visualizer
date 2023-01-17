@@ -32,8 +32,6 @@ function AreaGraph() {
 
     workflowCountList();
 
-    // console.log("list: ", (list.map(data => { return (data.name).split(/\s+/).slice(0, 4).join(" ") })));
-
     const labels = (list.map(data => { return (data.name).split(/\s+/).slice(0, 4).join(" ") }));
 
     const options = {

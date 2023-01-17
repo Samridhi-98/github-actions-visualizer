@@ -14,7 +14,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 5vh;
+  padding: 6vh;
 }
 
 .top-section {
@@ -35,12 +35,12 @@
 
 .graph-subdivison1{
   flex: 1;
-  padding-right: 1vh;
+  padding-right: 0.5vh;
 } 
 
 .graph-subdivison2{
   flex: 1;
-  padding-left: 1vh;
+  padding-left: 0.5vh;
 }
 
 .bar-graph, .line-graph, .area-graph, .multiline-graph{

@@ -1,12 +1,12 @@
 fileignoreconfig:
 - filename: src/components/description/Description.jsx
   checksum: 63d0882b0d8b4c20b8eadbdaa7bb321af1fd7f110e230194dc72c863bfb70dd4
-- filename: src/components/featureList/FeatureList.jsx
-  checksum: be2ec0b98294e79fc34a20556e10369af60ae99e2041c8a94b76a170d053b25f
 - filename: package-lock.json
   checksum: cd8c0ed0b99a8a9981ef0d717a663832f39c19fe6aebfcf9b5e2b539323f976b
 - filename: src/workflowRuns.json
   checksum: a97b1c975dd718a8d9d585ca00eb34c247e36524c90b43900c76a1212a50c5cc
 - filename: src/server.js
   checksum: 9e290d8f196c75c0789a749639a9e9f359e546d8ac44682564ea8cd1b4cfe83e
+- filename: src/components/featureList/FeatureList.jsx
+  checksum: ad308e5821f2316929d2c718a3ebb23462a36e137d69ba5c08939b8eaeb3f237
 version: ""

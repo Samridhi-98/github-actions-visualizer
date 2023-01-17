@@ -1,14 +1,38 @@
 import './Graph.css';
 import { Pie } from 'react-chartjs-2';
+import workflow from '../../workflowRuns.json';
 
 function PieGraph() {
 
+    let stats = {
+        conclusion: {
+            success: 0,
+            failure: 0,
+            cancelled: 0,
+            skipped: 0,
+            startup_failure: 0,
+            action_required: 0
+        }
+    }
+
+    const filterWorkflowStats = () => {
+
+        for (const run of workflow.list) {
+            stats.conclusion[run.conclusion] += 1;
+        }
+
+        console.log("stats: ", stats)
+    }
+
+    filterWorkflowStats();
+
+
     const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: Object.keys(stats.conclusion),
         datasets: [
             {
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: '',
+                data: Object.values(stats.conclusion),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -25,7 +49,7 @@ function PieGraph() {
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
                 ],
-                borderWidth: 1,
+                borderWidth: 2,
             },
         ],
     };

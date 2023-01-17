@@ -7,28 +7,6 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-let list = [];
-
-let stats = {
-    conclusion: {
-        success: 0,
-        failure: 0,
-        cancelled: 0,
-        skipped: 0,
-        startup_failure: 0,
-        action_required: 0
-    },
-    durations: {
-        success: [],
-        failure: [],
-        cancelled: [],
-        skipped: [],
-        startup_failure: [],
-    },
-    earliestRun: new Date(8640000000000000).getTime(),
-    latestRun: new Date(-8640000000000000).getTime()
-}
-
 const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
 });
@@ -95,53 +73,3 @@ async function fetchWorkflowData() {
 }
 
 fetchRepositories();
-
-// eslint-disable-next-line no-unused-vars
-async function filterWorkflowStats() {
-
-    await workflow.read();
-
-    for (const run of workflow.data.list) {
-        stats.conclusion[run.conclusion] += 1
-        const createdAtTime = Date.parse(run.created_at)
-        const updatedAtTime = Date.parse(run.updated_at)
-        const durationMs = updatedAtTime - createdAtTime
-        if (stats.durations[run.conclusion]?.push) {
-            stats.durations[run.conclusion].push(durationMs / 1000)
-        }
-        stats.earliestRun = Math.min(stats.earliestRun, createdAtTime)
-        stats.latestRun = Math.max(stats.latestRun, createdAtTime)
-    }
-
-    console.log("stats: ", stats)
-}
-
-async function createWorkflowCountList() {
-
-    await workflow.read();
-
-    for (const data of workflow.data.list) {
-
-        let run = {
-            "name": data.name,
-            "frequency": 1
-        };
-
-        const pair = list.find(workflow => workflow.name === data.name);
-        const index = list.indexOf(pair);
-
-        if (pair === undefined) {
-            list.push(run)
-        }
-        else {
-            list[index].frequency += 1;
-        }
-    }
-
-    console.log("list: ", list);
-
-    filterWorkflowStats();
-
-}
-
-createWorkflowCountList();

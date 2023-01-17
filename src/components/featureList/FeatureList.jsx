@@ -1,33 +1,15 @@
 import './FeatureList.css';
-import { useContext } from 'react';
-import { AppContext } from '../../context/AppContext.js';
+import workflow from '../../workflowRuns.json';
 
 function FeatureList() {
 
-    // eslint-disable-next-line no-unused-vars
-    const { addWorkflow, state } = useContext(AppContext);
-    // const [workflowData, setworkflowData] = useState(state.repoWorkflowList);
-
-    // const updateWorkflowTitle = (index) => {
-    //     const newTitle = (workflowData[index].title.includes('✓ ')) ? workflowData[index].title.replace('✓ ', '') : '✓ ' + workflowData[index].title;
-
-    //     setworkflowData(prevState => {
-    //         const newState = prevState.map(workflowData => {
-    //             if (workflowData.id === index + 1) {
-    //                 return { ...workflowData, title: newTitle };
-    //             }
-    //             return workflowData;
-    //         });
-    //         return newState;
-    //     });
-    //     // console.log("workflowData: ", workflowData);
-    // };
+    const list = [...new Set(workflow.list.map(workflow => workflow.name))];
 
     const renderWorkflow = () => {
-        // console.log("inside feature: ", state)
-        const card = state.repoWorkflowList.map((workflowData, index) => {
+
+        const card = list.map((workflow, index) => {
             return (
-                <div className='card' key={workflowData.id}> {workflowData.name} </div>
+                <div className='card' key={index}> {workflow} </div>
                 // onClick={() => { updateWorkflowTitle(index); addWorkflow(workflowList[index]) }}
             )
         })
@@ -39,8 +21,6 @@ function FeatureList() {
             <div className='feature-list'>
                 <h4>Workflow List</h4>
                 {renderWorkflow()}
-                {/* <div className='feature-card'>
-                </div> */}
             </div>
         </>
     )

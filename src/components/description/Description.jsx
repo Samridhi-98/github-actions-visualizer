@@ -1,13 +1,12 @@
-import { useContext } from 'react';
-import { AppContext } from '../../context/AppContext.js';
+import repository from '../../repository.json';
+
 import './Description.css';
 
 function Description() {
-    const { state } = useContext(AppContext);
 
     const renderRepoList = () => {
-        // console.log("inside description: ", state)
-        const card = state.repoList.map((repository, index) => {
+
+        const card = repository.list.map((repository, index) => {
             return (
                 <div className='card' key={index}> {repository} </div>
             )
