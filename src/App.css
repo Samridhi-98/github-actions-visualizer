@@ -23,8 +23,8 @@
   margin-bottom: 1vh;
 }
 
-.middle-section {
-  height: 60vh;
+.bottom-section {
+  height: 40vh;
   margin-top: 1vh;
   text-align: center;
   display: flex;
@@ -77,7 +77,7 @@ hr{
     flex-direction: column;
   }
 
-  .middle-section{
+  .bottom-section{
     height: 100vh;
     flex-direction: column;
   }

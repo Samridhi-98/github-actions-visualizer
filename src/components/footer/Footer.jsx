@@ -12,12 +12,12 @@ function Footer() {
                 <span>Copyright © AsyncAPI Project</span>
                 <ul className='nav-list'>
                     {/* <li className='meta-text'>Copyright © AsyncAPI Project</li> */}
-                    <li><a href='/'>Twitter</a></li>
-                    <li><a href='/'>GitHub</a></li>
-                    <li><a href='/'>LinkedIn</a></li>
-                    <li><a href='/'>YouTube</a></li>
-                    <li><a href='/'>Slack</a></li>
-                    <li><a href='/'>Twitch</a></li>
+                    <li><a href='https://twitter.com/AsyncAPISpec'>Twitter</a></li>
+                    <li><a href='https://github.com/asyncapi'>GitHub</a></li>
+                    <li><a href='https://www.linkedin.com/company/asyncapi/'>LinkedIn</a></li>
+                    <li><a href='https://www.youtube.com/asyncapi'>YouTube</a></li>
+                    <li><a href='https://app.slack.com/client/T34F2JRQU/C34F2JV0U'>Slack</a></li>
+                    <li><a href='https://www.twitch.tv/asyncapi'>Twitch</a></li>
                     <li><a href="mailto:press@asyncapi.io">Email Us</a></li>
                 </ul>
             </nav>

@@ -45,7 +45,7 @@ function AreaGraph() {
             title: {
                 display: true,
                 text: 'Workflows run per day',
-            },
+            }
         },
     };
 
@@ -56,13 +56,20 @@ function AreaGraph() {
                 fill: true,
                 label: 'Workflows',
                 data: (list.map(data => data.frequency)),
-                borderColor: 'rgb(53, 162, 235)',
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: (context) => {
+                    const ctx = context.chart.ctx;
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                    gradient.addColorStop(0, 'rgba(75,192,192,0');
+                    gradient.addColorStop(0.5, 'rgba(255, 201, 153,0.5)');
+                    gradient.addColorStop(1, 'rgba(75,192,192,0.5');
+                    return gradient;
+                },
             },
         ],
     };
 
-    return <Line height={100} options={options} data={data} />;
+    return <Line height={80} options={options} data={data} />;
 }
 
 export default AreaGraph;
