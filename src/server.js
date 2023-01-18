@@ -75,6 +75,7 @@ async function fetchWorkflowData() {
 
 // fetchRepositories();
 
+// eslint-disable-next-line no-unused-vars
 async function filterDatewiseData() {
 
     await workflow.read();
@@ -93,32 +94,65 @@ async function filterDatewiseData() {
             list.get(date).push(data.name);
         }
     }
-
     console.log(list);
 }
 
-filterDatewiseData();
+// filterDatewiseData();
 
-async function filterYearWiseData() {
+// eslint-disable-next-line no-unused-vars
+async function filterMonthWiseData() {
 
     await workflow.read();
 
     let list = new Map();
 
+    const MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     for (const data of workflow.data.list) {
 
-        let year = new Date(data.created_at).getFullYear();
+        let month = MONTH[new Date(data.created_at).getMonth()];
 
-        if (!list.has(year)) {
-            list.set(year, []);
+        if (!list.has(month)) {
+            list.set(month, []);
         }
 
-        if (list.get(year).find(workflow => workflow === data.name) === undefined) {
-            list.get(year).push(data.name);
+        if (list.get(month).find(workflow => workflow === data.name) === undefined) {
+            list.get(month).push(data.name);
         }
     }
 
     console.log(list);
 }
 
-filterYearWiseData();
+// filterMonthWiseData();
+
+// eslint-disable-next-line no-unused-vars
+async function filterYearWiseData() {
+
+    await workflow.read();
+
+    let list = new Map();
+    const MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    for (const data of workflow.data.list) {
+
+        let year = new Date(data.created_at).getFullYear();
+        let month = MONTH[new Date(data.created_at).getMonth()];
+
+        if (!list.has(year)) {
+            list.set(year, []);
+        }
+
+        if (list.get(year).find(data => data.month === month) === undefined) {
+            let value = {
+                "month": month,
+                "run": 0
+            }
+            list.get(year).push(value);
+        }
+        list.get(year).map(data => data.run++)
+    }
+
+    console.log(list);
+}
+// filterYearWiseData();

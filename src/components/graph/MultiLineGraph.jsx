@@ -1,7 +1,35 @@
 import './Graph.css';
 import { Line } from "react-chartjs-2";
+import workflow from '../../workflowRuns.json';
 
 function MultiLineGraph() {
+
+    let stats = {
+        durations: {
+            success: [],
+            failure: [],
+            skipped: [],
+        }
+    }
+
+    const filterWorkflowStats = () => {
+
+        for (const run of workflow.list) {
+            const createdAtTime = Date.parse(run.created_at)
+            const updatedAtTime = Date.parse(run.updated_at)
+            const durationMs = updatedAtTime - createdAtTime
+            if (stats.durations[run.conclusion]?.push) {
+                stats.durations[run.conclusion].push(durationMs / 1000)
+            }
+        }
+        // const successAverage = (stats.durations.success.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.success.length || 0;
+        // const failureAverage = (stats.durations.failure.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.failure.length || 0;
+        // const skippedAverage = (stats.durations.skipped.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.skipped.length || 0;
+        // console.log("stats: ", stats)
+        // console.log(successAverage, " - ", failureAverage, " - ", skippedAverage);
+    }
+
+    filterWorkflowStats();
 
     const options = {
         responsive: true,
@@ -11,40 +39,45 @@ function MultiLineGraph() {
             },
             title: {
                 display: true,
-                text: 'Total Runs of workflow',
-            },
+                text: 'Duration of runs in seconds',
+            }
         },
+        scales: {
+            y: {
+                display: true,
+                type: 'logarithmic',
+            },
+
+        }
     };
 
+    const labels = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
 
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
+    const success = Object.values(stats.durations.success).sort(() => Math.random() - 0.5);
+    const failure = Object.values(stats.durations.failure).sort(() => Math.random() - 0.5);
+    const skipped = Object.values(stats.durations.skipped).sort(() => Math.random() - 0.5);
+
 
     const data = {
         labels,
         datasets: [
             {
-                label: 'Dataset 1',
-                data: [3516410, 1371390, 2477380, 3615610, 7235390, 8877380],
+                label: 'Success',
+                data: success.map(data => data / 60).slice(10),
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
             {
-                label: 'Dataset 2',
-                data: [8137119, 9431691, 10266674, 1519410, 1478390, 18361750],
+                label: 'Failure',
+                data: failure.map(data => data / 60).slice(10),
                 borderColor: 'rgb(53, 162, 235)',
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
             },
             {
-                label: 'Dataset 2',
-                data: [8137119, 9434691, 12263584, 1315610, 1678390, 19121750],
-                borderColor: 'rgb(94, 65, 129)',
-                backgroundColor: 'rgba(94, 65, 129,0.5)',
-            },
-            {
-                label: 'Dataset 2',
-                data: [9137119, 8471691, 17266674, 1516410, 1098390, 13661750],
-                borderColor: 'rgb(57, 87, 52)',
-                backgroundColor: 'rgba(57, 87, 52,0.5)',
+                label: 'Skipped',
+                data: skipped.map(data => data / 60).slice(10),
+                borderColor: 'rgb(255, 201, 153)',
+                backgroundColor: 'rgba(255, 201, 153,0.5)',
             },
         ],
     };
