@@ -35,7 +35,7 @@ function BarGraph() {
         Object.values(list)[0].forEach(data => year21[MONTH.indexOf(data.month)] = data.run);
         Object.values(list)[1].forEach(data => year22[MONTH.indexOf(data.month)] = data.run);
         Object.values(list)[2].forEach(data => year23[MONTH.indexOf(data.month)] = data.run);
-        console.log(Object.keys(list));
+        // console.log(Object.keys(list));
     }
     filterYearWiseData();
 
