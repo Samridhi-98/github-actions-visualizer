@@ -33,7 +33,8 @@ export const workflowCountList = () => {
         }
     }
 
-    list.sort(() => Math.random() - 0.5);
+    // console.log(list.slice().sort((val1, val2) => val2.frequency - val1.frequency).slice(0, 20))
+    // list.sort(() => Math.random() - 0.5);
 
     maxRun = list.reduce((run1, run2) => run1.frequency > run2.frequency ? run1 : run2);
     minRun = list.reduce((run1, run2) => run1.frequency < run2.frequency ? run1 : run2);
@@ -56,6 +57,11 @@ export const filterWorkflowStats = () => {
             success: [],
             failure: [],
             skipped: [],
+        },
+        title: {
+            success: [],
+            failure: [],
+            skipped: []
         }
     }
 
@@ -65,13 +71,17 @@ export const filterWorkflowStats = () => {
         const updatedAtTime = Date.parse(run.updated_at)
         const durationMs = updatedAtTime - createdAtTime
         if (stats.durations[run.conclusion]?.push) {
-            stats.durations[run.conclusion].push(durationMs / 1000)
+            stats.durations[run.conclusion].push(durationMs / 1000);
+            stats.title[run.conclusion].push(run.name);
         }
     }
 
     averageRuntime.success = (stats.durations.success.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.success.length;
     averageRuntime.failure = (stats.durations.failure.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.failure.length;
     averageRuntime.skipped = (stats.durations.skipped.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.skipped.length;
+
+    console.log(stats.durations.failure);
+    console.log(stats.title.failure);
 
     return stats;
 }
@@ -105,7 +115,7 @@ export const filterYearWiseData = () => {
 export const setWorkflowPerDayData = () => {
 
     let list = {};
-    let workflow = {
+    let workflows = {
         maxNoOfRunPerDay: 0,
         minNoOfRunPerDay: 0,
         averageNoOfRunsPerDay: 0
@@ -127,10 +137,9 @@ export const setWorkflowPerDayData = () => {
     const totalRecord = Object.values(list).length;
     const noOfWorkflowRunPerDay = Object.values(list).map(data => data.length);
 
-    workflow.maxNoOfRunPerDay = Math.max(...noOfWorkflowRunPerDay);
-    workflow.minNoOfRunPerDay = Math.min(...noOfWorkflowRunPerDay);
-    workflow.averageNoOfRunsPerDay = noOfWorkflowRunPerDay.reduce((val1, val2) => val1 + val2, 0) / totalRecord;
+    workflows.maxNoOfRunPerDay = Math.max(...noOfWorkflowRunPerDay);
+    workflows.minNoOfRunPerDay = Math.min(...noOfWorkflowRunPerDay);
+    workflows.averageNoOfRunsPerDay = noOfWorkflowRunPerDay.reduce((val1, val2) => val1 + val2, 0) / totalRecord;
 
-    return workflow;
+    return workflows;
 }
-

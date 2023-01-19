@@ -23,7 +23,7 @@ function BarGraph() {
             },
             title: {
                 display: true,
-                text: 'Total workflow runs per year',
+                text: 'Total workflow runs per month',
             },
         },
         scales: {

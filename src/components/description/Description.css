@@ -1,0 +1,32 @@
+.group1, .group2, .group3, .group4, .group5 {
+  flex: 1;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1vh;
+  border-radius:5px;
+  border: 2px solid #282A2F;
+  background-color: #191B1F;
+}
+
+.group1{
+  margin-right: 0.5vh;
+}
+
+.group2{
+  margin-right: 0.5vh;
+  margin-left: 0.5vh;
+}
+
+.group3{
+  margin-right: 0.5vh;
+  margin-left: 0.5vh;
+}
+
+.group4{
+  margin-right: 0.5vh;
+  margin-left: 0.5vh;
+}
+
+.group5{
+  margin-left: 0.5vh;
+}

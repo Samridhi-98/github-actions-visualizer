@@ -4,7 +4,9 @@ import { workflowCountList } from '../../helper/Helper.js';
 
 function AreaGraph() {
 
-    const list = workflowCountList();
+    let list = workflowCountList();
+
+    list = list.slice().sort((val1, val2) => val2.frequency - val1.frequency).slice(0, 20);
 
     const labels = (list.map(data => { return (data.name).split(/\s+/).slice(0, 4).join(" ") }));
 

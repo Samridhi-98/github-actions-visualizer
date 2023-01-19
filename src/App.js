@@ -7,6 +7,7 @@ import BarGraph from './components/graph/BarGraph.jsx';
 import MultiLineGraph from './components/graph/MultiLineGraph.jsx';
 import Navbar from './components/navbar/Navbar.jsx';
 import Statistics from './components/statistics/Statistics.jsx';
+import Description from './components/description/Description.jsx';
 
 function App() {
 
@@ -21,6 +22,9 @@ function App() {
             <WorkflowList />
             <Statistics />
             <RepositoryList />
+          </section>
+          <section className='description-section'>
+            <Description />
           </section>
           <section className='middle-section'>
             <div className='area-graph'><AreaGraph /></div>
