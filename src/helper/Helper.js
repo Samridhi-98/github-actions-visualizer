@@ -5,7 +5,10 @@ export let averageRuntime = {
     success: 0,
     failure: 0,
     skipped: 0
-}
+};
+
+export let maxRun = {};
+export let minRun = {};
 
 export const MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -31,6 +34,9 @@ export const workflowCountList = () => {
     }
 
     list.sort(() => Math.random() - 0.5);
+
+    maxRun = list.reduce((run1, run2) => run1.frequency > run2.frequency ? run1 : run2);
+    minRun = list.reduce((run1, run2) => run1.frequency < run2.frequency ? run1 : run2);
 
     return list;
 }
