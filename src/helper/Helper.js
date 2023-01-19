@@ -1,5 +1,6 @@
 import workflow from '../workflowRuns.json';
 
+
 export let averageRuntime = {
     success: 0,
     failure: 0,
@@ -28,6 +29,7 @@ export const workflowCountList = () => {
             list[index].frequency += 1;
         }
     }
+
     list.sort(() => Math.random() - 0.5);
 
     return list;
@@ -93,3 +95,36 @@ export const filterYearWiseData = () => {
 
     return list;
 }
+
+export const setWorkflowPerDayData = () => {
+
+    let list = {};
+    let workflow = {
+        maxNoOfRunPerDay: 0,
+        minNoOfRunPerDay: 0,
+        averageNoOfRunsPerDay: 0
+    }
+
+    for (const data of workflow.list) {
+
+        let date = new Date(data.created_at).toLocaleDateString();
+
+        if (!list[date]) {
+            list[date] = [];
+        }
+
+        if (list[date].find(workflow => workflow === data.name) === undefined) {
+            list[date].push(data.name);
+        }
+    }
+
+    const totalRecord = Object.values(list).length;
+    const noOfWorkflowRunPerDay = Object.values(list).map(data => data.length);
+
+    workflow.maxNoOfRunPerDay = Math.max(...noOfWorkflowRunPerDay);
+    workflow.minNoOfRunPerDay = Math.min(...noOfWorkflowRunPerDay);
+    workflow.averageNoOfRunsPerDay = noOfWorkflowRunPerDay.reduce((val1, val2) => val1 + val2, 0) / totalRecord;
+
+    return workflow;
+}
+
