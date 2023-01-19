@@ -1,10 +1,10 @@
 import './Graph.css';
 import { Line } from "react-chartjs-2";
-import { filterWorkflow } from '../../helper/Helper';
+import { filterWorkflowStats } from '../../helper/Helper';
 
 function MultiLineGraph() {
 
-    const stats = filterWorkflow();
+    const stats = filterWorkflowStats();
 
     const options = {
         responsive: true,

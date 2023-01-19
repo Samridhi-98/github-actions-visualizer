@@ -1,43 +1,19 @@
 import './Graph.css';
 import { Bar } from "react-chartjs-2";
-import workflow from '../../workflowRuns.json';
+import { filterYearWiseData, MONTH } from '../../helper/Helper';
 
 function BarGraph() {
 
-    let list = {};
     let year21 = [...Array(12).fill(0)];
     let year22 = [...Array(12).fill(0)];
     let year23 = [...Array(12).fill(0)];
 
-    const MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    const filterYearWiseData = () => {
+    const list = filterYearWiseData();
 
-        for (const data of workflow.list) {
-
-            let year = new Date(data.created_at).getFullYear();
-            let month = MONTH[new Date(data.created_at).getMonth()];
-
-            if (!list[year]) {
-                list[year] = [];
-            }
-
-            if (list[year].find(data => data.month === month) === undefined) {
-                let value = {
-                    "month": month,
-                    "run": 0
-                }
-                list[year].push(value);
-            }
-            list[year].map(data => data.run++);
-        }
-
-        Object.values(list)[0].map(data => year21[MONTH.indexOf(data.month)] = data.run);
-        Object.values(list)[1].map(data => year22[MONTH.indexOf(data.month)] = data.run);
-        Object.values(list)[2].map(data => year23[MONTH.indexOf(data.month)] = data.run);
-        // console.log(Object.keys(list));
-    }
-    filterYearWiseData();
+    Object.values(list)[0].map(data => year21[MONTH.indexOf(data.month)] = data.run);
+    Object.values(list)[1].map(data => year22[MONTH.indexOf(data.month)] = data.run);
+    Object.values(list)[2].map(data => year23[MONTH.indexOf(data.month)] = data.run);
 
     const options = {
         responsive: true,
