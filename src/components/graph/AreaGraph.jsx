@@ -1,36 +1,10 @@
 import './Graph.css';
 import { Line } from 'react-chartjs-2';
-import workflow from '../../workflowRuns.json';
+import { workflowCountList } from '../../helper/Helper.js';
 
 function AreaGraph() {
 
-    let list = [];
-
-    const workflowCountList = () => {
-
-        for (const data of workflow.list) {
-
-            let run = {
-                "name": data.name,
-                "frequency": 1
-            };
-
-            const pair = list.find(workflow => workflow.name === data.name);
-            const index = list.indexOf(pair);
-
-            if (pair === undefined) {
-                list.push(run)
-            }
-            else {
-                list[index].frequency += 1;
-            }
-        }
-        list.sort(() => Math.random() - 0.5);
-
-        return list;
-    }
-
-    workflowCountList();
+    const list = workflowCountList();
 
     const labels = (list.map(data => { return (data.name).split(/\s+/).slice(0, 4).join(" ") }));
 

@@ -1,35 +1,10 @@
 import './Graph.css';
 import { Line } from "react-chartjs-2";
-import workflow from '../../workflowRuns.json';
+import { filterWorkflow } from '../../helper/Helper';
 
 function MultiLineGraph() {
 
-    let stats = {
-        durations: {
-            success: [],
-            failure: [],
-            skipped: [],
-        }
-    }
-
-    const filterWorkflowStats = () => {
-
-        for (const run of workflow.list) {
-            const createdAtTime = Date.parse(run.created_at)
-            const updatedAtTime = Date.parse(run.updated_at)
-            const durationMs = updatedAtTime - createdAtTime
-            if (stats.durations[run.conclusion]?.push) {
-                stats.durations[run.conclusion].push(durationMs / 1000)
-            }
-        }
-        // const successAverage = (stats.durations.success.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.success.length || 0;
-        // const failureAverage = (stats.durations.failure.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.failure.length || 0;
-        // const skippedAverage = (stats.durations.skipped.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.skipped.length || 0;
-        // console.log("stats: ", stats)
-        // console.log(successAverage, " - ", failureAverage, " - ", skippedAverage);
-    }
-
-    filterWorkflowStats();
+    const stats = filterWorkflow();
 
     const options = {
         responsive: true,

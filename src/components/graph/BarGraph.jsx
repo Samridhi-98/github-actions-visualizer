@@ -32,9 +32,9 @@ function BarGraph() {
             list[year].map(data => data.run++);
         }
 
-        Object.values(list)[0].forEach(data => year21[MONTH.indexOf(data.month)] = data.run);
-        Object.values(list)[1].forEach(data => year22[MONTH.indexOf(data.month)] = data.run);
-        Object.values(list)[2].forEach(data => year23[MONTH.indexOf(data.month)] = data.run);
+        Object.values(list)[0].map(data => year21[MONTH.indexOf(data.month)] = data.run);
+        Object.values(list)[1].map(data => year22[MONTH.indexOf(data.month)] = data.run);
+        Object.values(list)[2].map(data => year23[MONTH.indexOf(data.month)] = data.run);
         // console.log(Object.keys(list));
     }
     filterYearWiseData();

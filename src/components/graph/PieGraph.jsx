@@ -1,32 +1,10 @@
 import './Graph.css';
 import { Pie } from 'react-chartjs-2';
-import workflow from '../../workflowRuns.json';
+import { filterWorkflowStats } from '../../helper/Helper';
 
 function PieGraph() {
 
-    let stats = {
-        conclusion: {
-            success: 0,
-            failure: 0,
-            cancelled: 0,
-            skipped: 0,
-            startup_failure: 0,
-            action_required: 0,
-            null: 0
-        }
-    }
-
-    const filterWorkflowStats = () => {
-
-        for (const run of workflow.list) {
-            stats.conclusion[run.conclusion] += 1;
-        }
-
-        // console.log("stats: ", stats)
-    }
-
-    filterWorkflowStats();
-
+    const stats = filterWorkflowStats();
 
     const data = {
         labels: Object.keys(stats.conclusion),
