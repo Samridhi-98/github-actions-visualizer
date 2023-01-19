@@ -1,8 +1,8 @@
 import repository from '../../repository.json';
 
-import './Description.css';
+import './RepositoryList.css';
 
-function Description() {
+function RepositoryList() {
 
     const renderRepoList = () => {
 
@@ -16,7 +16,7 @@ function Description() {
 
     return (
         <>
-            <div className='description'>
+            <div className='repository'>
                 <h4>Repositories</h4>
                 {renderRepoList()}
             </div>
@@ -24,4 +24,4 @@ function Description() {
     )
 }
 
-export default Description;
+export default RepositoryList;

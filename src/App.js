@@ -1,6 +1,6 @@
 import './App.css';
-import Description from './components/description/Description.jsx';
-import FeatureList from './components/featureList/FeatureList.jsx';
+import RepositoryList from './components/repository/RepositoryList.jsx';
+import WorkflowList from './components/workflow/WorkflowList.jsx';
 import Footer from './components/footer/Footer.jsx';
 import AreaGraph from './components/graph/AreaGraph.jsx';
 import BarGraph from './components/graph/BarGraph.jsx';
@@ -18,9 +18,9 @@ function App() {
         </header>
         <main id='main-content' className='main-content'>
           <section className='top-section'>
-            <FeatureList />
+            <WorkflowList />
             <Statistics />
-            <Description />
+            <RepositoryList />
           </section>
           <section className='middle-section'>
             <div className='area-graph'><AreaGraph /></div>

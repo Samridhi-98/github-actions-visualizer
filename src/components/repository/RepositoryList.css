@@ -1,4 +1,4 @@
-.description {
+.repository {
   flex: 1;
   margin-left: 1vh;
   border-radius:5px;
@@ -33,7 +33,7 @@ h4{
 
 @media only screen and (max-width: 900px){
 
-  .description{
+  .repository{
     margin: 2vh auto;
   }
 

@@ -1,7 +1,7 @@
-import './FeatureList.css';
+import './WorkflowList.css';
 import workflow from '../../workflowRuns.json';
 
-function FeatureList() {
+function WorkflowList() {
 
     const list = [...new Set(workflow.list.map(workflow => workflow.name))];
 
@@ -18,7 +18,7 @@ function FeatureList() {
 
     return (
         <>
-            <div className='feature-list'>
+            <div className='workflow-list'>
                 <h4>Workflow List</h4>
                 {renderWorkflow()}
             </div>
@@ -26,4 +26,4 @@ function FeatureList() {
     )
 }
 
-export default FeatureList;
+export default WorkflowList;
