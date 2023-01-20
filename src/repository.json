@@ -38,7 +38,7 @@
     "template-for-generator-templates",
     "generator-react-sdk",
     "modelina",
-    "asyncapi-php-template",
+    "php-template",
     "cli",
     "event-gateway",
     "community",

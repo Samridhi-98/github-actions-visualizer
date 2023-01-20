@@ -1,7 +1,5 @@
 import workflow from '../workflowRuns.json';
 
-export const MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
 export const workflowCountList = () => {
     let list = [];
 
@@ -71,27 +69,26 @@ export const filterWorkflowStats = () => {
     return stats;
 }
 
-export const filterYearWiseData = () => {
+
+export const filterHourlyData = () => {
 
     let list = {};
 
-    for (const data of workflow.list) {
+    for (const run of workflow.list) {
 
-        let year = new Date(data.created_at).getFullYear();
-        let month = MONTH[new Date(data.created_at).getMonth()];
+        let hours = new Date(run.created_at).getHours();
+        // let minute = new Date(run.created_at).getMinutes();
+        // let second = new Date(run.created_at).getSeconds();
 
-        if (!list[year]) {
-            list[year] = [];
+        let time = hours;
+
+        if (!list[time]) {
+            list[time] = [run.repository_name];
         }
 
-        if (list[year].find(data => data.month === month) === undefined) {
-            let value = {
-                "month": month,
-                "run": 0
-            }
-            list[year].push(value);
+        if (list[time].find(data => data === run.repository_name) === undefined) {
+            list[time].push(run.repository_name);
         }
-        list[year].map(data => data.run++);
     }
 
     return list;

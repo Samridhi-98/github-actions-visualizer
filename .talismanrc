@@ -9,4 +9,6 @@ fileignoreconfig:
   checksum: 9e290d8f196c75c0789a749639a9e9f359e546d8ac44682564ea8cd1b4cfe83e
 - filename: src/components/featureList/FeatureList.jsx
   checksum: ad308e5821f2316929d2c718a3ebb23462a36e137d69ba5c08939b8eaeb3f237
+- filename: src/components/graph/BarGraph.jsx
+  checksum: 66b7ea5cf6670fe145094e68f59323b88e6ab8dd22549c5ec51eb3bfc2b8d45b
 version: ""

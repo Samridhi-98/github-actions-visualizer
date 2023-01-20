@@ -49,24 +49,28 @@ async function fetchWorkflowData() {
             repo: repositories[index],
             per_page: 100
         })
+        const currentMonth = new Date().getMonth();
+        const currentYear = new Date().getFullYear();
 
         // eslint-disable-next-line array-callback-return
         data.workflow_runs.map(run => {
-            let data = {
-                "id": run.id,
-                "name": run.name,
-                "repository_name": run.repository.name,
-                "run_number": run.run_number,
-                "event": run.event,
-                "status": run.status,
-                "conclusion": run.conclusion,
-                "workflow_id": run.workflow_id,
-                "created_at": run.created_at,
-                "updated_at": run.updated_at,
-                "run_started_at": run.run_started_at,
+            let condition = (new Date(run.created_at).getFullYear() === currentYear) && (new Date(run.created_at).getMonth() === currentMonth);
+            if (condition) {
+                let data = {
+                    "id": run.id,
+                    "name": run.name,
+                    "repository_name": run.repository.name,
+                    "run_number": run.run_number,
+                    "event": run.event,
+                    "status": run.status,
+                    "conclusion": run.conclusion,
+                    "workflow_id": run.workflow_id,
+                    "created_at": run.created_at,
+                    "updated_at": run.updated_at,
+                    "run_started_at": run.run_started_at,
+                }
+                workflow.data.list.push(data);
             }
-
-            workflow.data.list.push(data);
         })
 
         await workflow.write();
@@ -75,30 +79,18 @@ async function fetchWorkflowData() {
 
 // fetchRepositories();
 
-const filterData = async () => {
+// eslint-disable-next-line no-unused-vars
+async function fetchdata() {
 
-    await workflow.read();
+    await repository.read();
 
-    let list = {};
-
-    for (const run of workflow.data.list) {
-
-        let hours = new Date(run.created_at).getHours();
-        let minute = new Date(run.created_at).getMinutes();
-        let second = new Date(run.created_at).getSeconds();
-
-        let time = hours + ":" + minute + ":" + second;
-
-        if (!list[run.repository_name]) {
-            list[run.repository_name] = [];
-        }
-
-        if (list[run.repository_name].find(data => data === time) === undefined) {
-            list[run.repository_name].push(time);
-        }
+    for (let index = 0; index < repository.data.list.length; index++) {
+        const { data } = await octokit.paginate('GET /repos/{owner}/{repo}/actions/runs', {
+            org: "asyncapi",
+            repo: repository.data.list[index],
+            per_page: 100,
+        })
+        console.log(data)
     }
-
-    console.log(list);
 }
-
-filterData();
+// fetchdata();
