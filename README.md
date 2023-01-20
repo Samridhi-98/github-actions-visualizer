@@ -14,6 +14,6 @@ Right now we have [this](https://www.figma.com/file/ch5mSLGIaHnagjdfsPxGrd/Githu
 
 #### After
 
-<img width="1713" alt="Screenshot 2023-01-18 at 4 00 04 PM" src="https://user-images.githubusercontent.com/54466041/213151025-cdb61d2a-4a66-4247-af47-22626a02d475.png">
+![image](https://user-images.githubusercontent.com/54466041/213649817-40587e51-3e7e-4cd2-b042-bdb079e0822d.png)
 
-<img width="1727" alt="Screenshot 2023-01-18 at 4 08 35 PM" src="https://user-images.githubusercontent.com/54466041/213151226-87e952d7-b318-4ad2-b49f-82e06c2d0924.png">
+![image](https://user-images.githubusercontent.com/54466041/213649943-21382aa7-5c46-4561-b39d-5e3a2f68ef90.png)
