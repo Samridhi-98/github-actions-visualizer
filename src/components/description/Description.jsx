@@ -72,7 +72,7 @@ function Description() {
             </div>
             <div className='group4'>
                 <div className='card'>
-                    <p>Average no of runs per day :<b> {(workflow.averageNoOfRunsPerDay).toPrecision(4)}</b></p>
+                    <p>Average no of runs per day :<b> {(workflow.averageNoOfRunsPerDay).toFixed(2)}</b></p>
                 </div>
                 <div className='card'>
                     <p>Maximum no of runs per day :<b> {workflow.maxNoOfRunPerDay}</b></p>

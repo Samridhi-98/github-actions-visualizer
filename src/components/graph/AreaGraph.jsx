@@ -6,7 +6,10 @@ function AreaGraph() {
 
     let list = workflowCountList();
 
-    list = list.slice().sort((val1, val2) => val2.frequency - val1.frequency).slice(0, 20);
+    list = list.slice().sort((val1, val2) => val2.duration - val1.duration).slice(0, 20);
+    const averageRuntime = list.map(data => (data.duration / data.frequency).toFixed(2));
+
+    // console.log(list)
 
     const labels = (list.map(data => { return (data.name).split(/\s+/).slice(0, 4).join(" ") }));
 
@@ -18,9 +21,16 @@ function AreaGraph() {
             },
             title: {
                 display: true,
-                text: 'No of workflow run',
+                text: 'Workflow Dataset',
             }
         },
+        scales: {
+            y: {
+                display: true,
+                type: 'logarithmic',
+            },
+
+        }
     };
 
     const data = {
@@ -28,8 +38,8 @@ function AreaGraph() {
         datasets: [
             {
                 fill: true,
-                label: 'Workflows',
-                data: (list.map(data => data.frequency)),
+                label: 'Average Runtime',
+                data: list.map(data => data.frequency),
                 borderColor: 'rgba(75,192,192,1)',
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;
@@ -40,6 +50,13 @@ function AreaGraph() {
                     return gradient;
                 },
             },
+            {
+                label: 'Frequency',
+                pointRadius: 5,
+                data: averageRuntime,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }
         ],
     };
 

@@ -7,9 +7,14 @@ export const workflowCountList = () => {
 
     for (const data of workflow.list) {
 
+        const createdAtTime = Date.parse(data.created_at);
+        const updatedAtTime = Date.parse(data.updated_at);
+        const durationMs = Math.floor(((updatedAtTime - createdAtTime) / 1000 / 60) << 0);
+
         let run = {
             "name": data.name,
-            "frequency": 1
+            "frequency": 1,
+            "duration": durationMs
         };
 
         const pair = list.find(workflow => workflow.name === data.name);
@@ -20,6 +25,7 @@ export const workflowCountList = () => {
         }
         else {
             list[index].frequency += 1;
+            list[index].duration += durationMs;
         }
     }
 

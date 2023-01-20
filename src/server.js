@@ -73,4 +73,32 @@ async function fetchWorkflowData() {
     }
 }
 
-fetchRepositories();
+// fetchRepositories();
+
+const filterData = async () => {
+
+    await workflow.read();
+
+    let list = {};
+
+    for (const run of workflow.data.list) {
+
+        let hours = new Date(run.created_at).getHours();
+        let minute = new Date(run.created_at).getMinutes();
+        let second = new Date(run.created_at).getSeconds();
+
+        let time = hours + ":" + minute + ":" + second;
+
+        if (!list[run.repository_name]) {
+            list[run.repository_name] = [];
+        }
+
+        if (list[run.repository_name].find(data => data === time) === undefined) {
+            list[run.repository_name].push(time);
+        }
+    }
+
+    console.log(list);
+}
+
+filterData();
