@@ -1,15 +1,5 @@
 import workflow from '../workflowRuns.json';
 
-
-export let averageRuntime = {
-    success: 0,
-    failure: 0,
-    skipped: 0
-};
-
-export let maxRun = {};
-export let minRun = {};
-
 export const MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export const workflowCountList = () => {
@@ -33,12 +23,6 @@ export const workflowCountList = () => {
         }
     }
 
-    // console.log(list.slice().sort((val1, val2) => val2.frequency - val1.frequency).slice(0, 20))
-    // list.sort(() => Math.random() - 0.5);
-
-    maxRun = list.reduce((run1, run2) => run1.frequency > run2.frequency ? run1 : run2);
-    minRun = list.reduce((run1, run2) => run1.frequency < run2.frequency ? run1 : run2);
-
     return list;
 }
 
@@ -58,30 +42,24 @@ export const filterWorkflowStats = () => {
             failure: [],
             skipped: [],
         },
-        title: {
-            success: [],
-            failure: [],
-            skipped: []
-        }
     }
 
     for (const run of workflow.list) {
         stats.conclusion[run.conclusion] += 1;
-        const createdAtTime = Date.parse(run.created_at)
-        const updatedAtTime = Date.parse(run.updated_at)
-        const durationMs = updatedAtTime - createdAtTime
+        const createdAtTime = Date.parse(run.created_at);
+        const updatedAtTime = Date.parse(run.updated_at);
+        const durationMs = updatedAtTime - createdAtTime;
+        const durationInMinute = Math.floor((durationMs / 1000 / 60) << 0) + ':' + Math.floor((durationMs / 1000) % 60);
+        let data = {
+            'title': run.name,
+            'duration': durationInMinute
+        }
         if (stats.durations[run.conclusion]?.push) {
-            stats.durations[run.conclusion].push(durationMs / 1000);
-            stats.title[run.conclusion].push(run.name);
+            stats.durations[run.conclusion].push(data);
         }
     }
 
-    averageRuntime.success = (stats.durations.success.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.success.length;
-    averageRuntime.failure = (stats.durations.failure.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.failure.length;
-    averageRuntime.skipped = (stats.durations.skipped.reduce((val1, val2) => val1 + val2, 0)) / stats.durations.skipped.length;
-
-    console.log(stats.durations.failure);
-    console.log(stats.title.failure);
+    // console.log(stats.durations.failure);
 
     return stats;
 }

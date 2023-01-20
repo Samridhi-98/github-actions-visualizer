@@ -28,29 +28,28 @@ function MultiLineGraph() {
 
     const labels = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
 
-    const success = Object.values(stats.durations.success).sort(() => Math.random() - 0.5);
-    const failure = Object.values(stats.durations.failure).sort(() => Math.random() - 0.5);
-    const skipped = Object.values(stats.durations.skipped).sort(() => Math.random() - 0.5);
-
+    const success = Object.values(stats.durations.success).map(data => data.duration.split(':').reduce((acc, time) => (60 * acc) + +time));
+    const failure = Object.values(stats.durations.failure).map(data => data.duration.split(':').reduce((acc, time) => (60 * acc) + +time));
+    const skipped = Object.values(stats.durations.skipped).map(data => data.duration.split(':').reduce((acc, time) => (60 * acc) + +time));
 
     const data = {
         labels,
         datasets: [
             {
                 label: 'Success',
-                data: success.map(data => data / 60).slice(10),
+                data: success.slice(10),
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
             },
             {
                 label: 'Failure',
-                data: failure.map(data => data / 60).slice(10),
+                data: failure.slice(10),
                 borderColor: 'rgb(53, 162, 235)',
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
             },
             {
                 label: 'Skipped',
-                data: skipped.map(data => data / 60).slice(10),
+                data: skipped.slice(10),
                 borderColor: 'rgb(255, 201, 153)',
                 backgroundColor: 'rgba(255, 201, 153,0.5)',
             },

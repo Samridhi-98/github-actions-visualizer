@@ -1,8 +1,8 @@
-.group1, .group2, .group3, .group4, .group5 {
+.group1, .group2, .group3, .group4 {
   flex: 1;
+  color: #CCCDDC;
   text-align: center;
   vertical-align: middle;
-  padding: 1vh;
   border-radius:5px;
   border: 2px solid #282A2F;
   background-color: #191B1F;
@@ -15,18 +15,32 @@
 .group2{
   margin-right: 0.5vh;
   margin-left: 0.5vh;
+  overflow-y: scroll;
 }
 
 .group3{
   margin-right: 0.5vh;
   margin-left: 0.5vh;
+  overflow-y: scroll;
 }
 
 .group4{
-  margin-right: 0.5vh;
   margin-left: 0.5vh;
 }
 
-.group5{
-  margin-left: 0.5vh;
+.card{
+  padding: 1vh;
+  margin: 0.75vh 1vh;
+  border-radius:5px;
+  border: 2px solid #282A2F;
+  background-color: #23252A;
+}
+
+.card:hover{
+  background-color: #282A2F;
+}
+
+h4{
+  text-align: center;
+  background-color: #191B1F;
 }

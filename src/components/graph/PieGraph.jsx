@@ -5,13 +5,15 @@ import { filterWorkflowStats } from '../../helper/Helper';
 function PieGraph() {
 
     const stats = filterWorkflowStats();
+    const total = (Object.values(stats.conclusion)).reduce((val1, val2) => val1 + val2, 0);
+    const conclusionPercentage = (Object.values(stats.conclusion)).map(val => (val * 100) / total)
 
     const data = {
         labels: Object.keys(stats.conclusion),
         datasets: [
             {
                 label: '',
-                data: Object.values(stats.conclusion),
+                data: conclusionPercentage,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
