@@ -1,6 +1,6 @@
 fileignoreconfig:
 - filename: src/components/description/Description.jsx
-  checksum: 39fede64a89db1b654c468fa34470606820b3efa3e2301925dc9280e46bd7632
+  checksum: e822aaf2faef5f02f85832740c25fffc50f0e45e1424ddf620a00055d358ab3a
 - filename: package-lock.json
   checksum: cd8c0ed0b99a8a9981ef0d717a663832f39c19fe6aebfcf9b5e2b539323f976b
 - filename: src/workflowRuns.json

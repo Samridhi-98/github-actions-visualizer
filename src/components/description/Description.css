@@ -1,11 +1,10 @@
 .group1, .group2, .group3, .group4 {
   flex: 1;
   color: #CCCDDC;
-  text-align: center;
-  vertical-align: middle;
   border-radius:5px;
   border: 2px solid #282A2F;
   background-color: #191B1F;
+  overflow-y: scroll;
 }
 
 .group1{
@@ -15,13 +14,11 @@
 .group2{
   margin-right: 0.5vh;
   margin-left: 0.5vh;
-  overflow-y: scroll;
 }
 
 .group3{
   margin-right: 0.5vh;
   margin-left: 0.5vh;
-  overflow-y: scroll;
 }
 
 .group4{

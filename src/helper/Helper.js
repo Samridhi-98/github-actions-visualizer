@@ -52,6 +52,7 @@ export const filterWorkflowStats = () => {
         const durationInMinute = Math.floor((durationMs / 1000 / 60) << 0) + ':' + Math.floor((durationMs / 1000) % 60);
         let data = {
             'title': run.name,
+            'repo': run.repository_name,
             'duration': durationInMinute
         }
         if (stats.durations[run.conclusion]?.push) {
