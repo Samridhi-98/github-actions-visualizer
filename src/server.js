@@ -54,8 +54,8 @@ async function fetchWorkflowData() {
 
         // eslint-disable-next-line array-callback-return
         data.workflow_runs.map(run => {
-            let condition = (new Date(run.created_at).getFullYear() === currentYear) && (new Date(run.created_at).getMonth() === currentMonth);
-            if (condition) {
+            let isSameYearAndMonth = (new Date(run.created_at).getFullYear() === currentYear) && (new Date(run.created_at).getMonth() === currentMonth);
+            if (isSameYearAndMonth) {
                 let data = {
                     "id": run.id,
                     "name": run.name,
@@ -69,7 +69,9 @@ async function fetchWorkflowData() {
                     "updated_at": run.updated_at,
                     "run_started_at": run.run_started_at,
                 }
-                workflow.data.list.push(data);
+                if (workflow.data.list.find(run => run.id === data.id) === undefined) {
+                    workflow.data.list.push(data);
+                }
             }
         })
 
@@ -77,7 +79,7 @@ async function fetchWorkflowData() {
     }
 }
 
-// fetchRepositories();
+fetchRepositories();
 
 // eslint-disable-next-line no-unused-vars
 async function fetchdata() {
