@@ -1,16 +1,30 @@
 import './WorkflowList.css';
+import { useContext } from 'react';
 import workflow from '../../workflowRuns.json';
+import { AppContext } from '../../context/AppContext.js';
 
 function WorkflowList() {
 
-    const list = [...new Set(workflow.list.map(workflow => workflow.name))];
+    const { state } = useContext(AppContext);
+
+    let list = [];
+
+    const setWorkflow = () => {
+        state.repoList.forEach(repo => {
+            let title = workflow.list.filter(workflow => workflow.repository_name !== repo);
+            list.push(...title.map(data => data.name));
+        });
+        return list.filter((workflow, index) => list.indexOf(workflow) === index);
+    }
+
 
     const renderWorkflow = () => {
+
+        list = setWorkflow();
 
         const card = list.map((workflow, index) => {
             return (
                 <div className='card' key={index}> {workflow} </div>
-                // onClick={() => { updateWorkflowTitle(index); addWorkflow(workflowList[index]) }}
             )
         })
         return card;

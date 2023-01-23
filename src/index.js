@@ -4,6 +4,7 @@ import './index.css';
 import App from './App.js';
 import reportWebVitals from './reportWebVitals.js';
 import { Chart as ChartJS, registerables } from 'chart.js';
+import AppProvider from './context/AppContext.js';
 
 ChartJS.register(...registerables);
 
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <App />
+    <AppProvider>
+      <App />
+    </AppProvider>
   </React.StrictMode>
 );
 
