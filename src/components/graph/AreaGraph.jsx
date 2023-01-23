@@ -38,7 +38,7 @@ function AreaGraph() {
         datasets: [
             {
                 fill: true,
-                label: 'Average Runtime',
+                label: 'Frequency',
                 data: list.map(data => data.frequency),
                 borderColor: 'rgba(75,192,192,1)',
                 backgroundColor: (context) => {
@@ -51,7 +51,7 @@ function AreaGraph() {
                 },
             },
             {
-                label: 'Frequency',
+                label: 'Average Runtime',
                 pointRadius: 5,
                 data: averageRuntime,
                 borderColor: 'rgb(255, 99, 132)',

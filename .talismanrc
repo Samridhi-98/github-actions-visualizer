@@ -11,4 +11,6 @@ fileignoreconfig:
   checksum: ad308e5821f2316929d2c718a3ebb23462a36e137d69ba5c08939b8eaeb3f237
 - filename: src/components/graph/BarGraph.jsx
   checksum: 66b7ea5cf6670fe145094e68f59323b88e6ab8dd22549c5ec51eb3bfc2b8d45b
+- filename: src/components/repository/RepositoryList.jsx
+  checksum: 47d21df6b903e6b757a477b17d61a6f0435aec36f1a30f53c50955b3bcb79048
 version: ""

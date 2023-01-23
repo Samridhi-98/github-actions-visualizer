@@ -1,14 +1,28 @@
+import { useState } from 'react';
 import repository from '../../repository.json';
 
 import './RepositoryList.css';
 
 function RepositoryList() {
 
-    const renderRepoList = () => {
+    const [name, setName] = useState(repository.list.map(name => ('✓ ' + name)));
 
-        const card = repository.list.map((repository, index) => {
+
+    const updateTitle = (repoName) => {
+        const newTitle = repoName.includes('✓ ') ? repoName.replace('✓ ', '') : ('✓ ' + repoName);
+        const newList = [...name];
+        const index = newList.indexOf(repoName);
+        newList[index] = newTitle;
+        setName(newList);
+    }
+
+    const renderRepoList = () => {
+        const card = name.map((title, index) => {
             return (
-                <div className='card' key={index}> {repository} </div>
+                <div className='card' key={index} onClick={() => { updateTitle(title) }}>
+                    {/* <input type="checkbox" value={repository} /> */}
+                    {title}
+                </div>
             )
         })
         return card;
