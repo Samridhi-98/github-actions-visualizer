@@ -8,7 +8,7 @@ function AppProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const setRepository = (repoList) => {
-        dispatch({ type: 'SET_REPOSITORY', payload: { repoList: repoList.filter(title => !title.includes('✓ ')) } });
+        dispatch({ type: 'SET_REPOSITORY', payload: { repoList: repoList.filter(title => title.includes('✓ ')) } });
     }
 
     return (

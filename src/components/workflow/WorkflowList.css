@@ -27,10 +27,20 @@ h4{
   background-color: #282A2F;
 }
 
+.no-data{
+  text-align: center;
+  position: relative;
+  top: 25%;
+}
+
+img{
+  height: 100px;
+}
+
 @media only screen and (max-width: 900px){
 
  .workflow-list{
-  margin: 2vh  auto;
+  margin: 2vh auto;
  }
 
 }
