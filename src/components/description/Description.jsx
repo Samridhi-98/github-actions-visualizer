@@ -49,16 +49,40 @@ function Description() {
         <>
             <div className='group1'>
                 <div className='card'>
-                    <p>Max Failure Runtime</p>
-                    <b>{maxFailureRuntime.title} : {maxFailureRuntime.duration} min</b>
+                    <b className='heading'>Max Failure Runtime</b>
+                    <p>
+                        <b>Workflow Title: </b>{maxFailureRuntime.title}
+                    </p>
+                    <p>
+                        <b>Duration: </b>{maxFailureRuntime.duration} min
+                    </p>
+                    <p>
+                        <b>Repository: </b>{maxFailureRuntime.repo}
+                    </p>
                 </div>
                 <div className='card'>
-                    <p>Max Success Runtime</p>
-                    <b>{maxSuccessRuntime.title} : {maxSuccessRuntime.duration} min</b>
+                    <b className='heading'>Max Success Runtime</b>
+                    <p>
+                        <b>Workflow Title: </b>{maxSuccessRuntime.title}
+                    </p>
+                    <p>
+                        <b>Duration: </b>{maxSuccessRuntime.duration} min
+                    </p>
+                    <p>
+                        <b>Repository: </b>{maxSuccessRuntime.repo}
+                    </p>
                 </div>
                 <div className='card'>
-                    <p>Max Skipped Runtime</p>
-                    <b>{maxSkippedRuntime.title} : {maxSkippedRuntime.duration} min</b>
+                    <b className='heading'>Max Skipped Runtime</b>
+                    <p>
+                        <b>Workflow Title: </b>{maxSkippedRuntime.title}
+                    </p>
+                    <p>
+                        <b>Duration: </b>{maxSkippedRuntime.duration} min
+                    </p>
+                    <p>
+                        <b>Repository: </b>{maxSkippedRuntime.repo}
+                    </p>
                 </div>
             </div>
             <div className='group2'>

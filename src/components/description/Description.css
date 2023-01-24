@@ -37,6 +37,11 @@
   background-color: #282A2F;
 }
 
+.heading{
+  font-style: italic;
+  color: whitesmoke;
+}
+
 h4{
   text-align: center;
   background-color: #191B1F;
