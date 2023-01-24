@@ -1,16 +1,15 @@
 import './Description.css';
-import { setWorkflowPerDayData, filterWorkflowStats } from '../../helper/Helper.js';
+import { setWorkflowPerDayData, filterWorkflowStats, convertToSeconds } from '../../helper/Helper.js';
 
 function Description() {
 
     const workflow = setWorkflowPerDayData();
     const stats = filterWorkflowStats();
 
-    const maxFailureRuntime = stats.durations.failure.reduce((run1, run2) => run1.duration > run2.duration ? run1 : run2);
-    const maxSuccessRuntime = stats.durations.success.reduce((run1, run2) => run1.duration > run2.duration ? run1 : run2);
-    const maxSkippedRuntime = stats.durations.skipped.reduce((run1, run2) => run1.duration > run2.duration ? run1 : run2);
-    const maxRuntime = Math.max(parseInt(maxFailureRuntime.duration), parseInt(maxSuccessRuntime.duration));
-
+    const maxFailureRuntime = stats.durations.failure.reduce((run1, run2) => convertToSeconds(run1.duration) > convertToSeconds(run2.duration) ? run1 : run2);
+    const maxSuccessRuntime = stats.durations.success.reduce((run1, run2) => convertToSeconds(run1.duration) > convertToSeconds(run2.duration) ? run1 : run2);
+    const maxSkippedRuntime = stats.durations.skipped.reduce((run1, run2) => convertToSeconds(run1.duration) > convertToSeconds(run2.duration) ? run1 : run2);
+    const maxRuntime = Math.max(convertToSeconds(maxFailureRuntime.duration), convertToSeconds(maxSuccessRuntime.duration));
 
     let resultFailure = Object.values(
         stats.durations.failure.reduce((res, { title, repo }) => {

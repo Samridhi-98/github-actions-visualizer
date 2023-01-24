@@ -1,5 +1,10 @@
 import workflow from '../workflowRuns.json';
 
+export const convertToSeconds = (time) => {
+    const [minute, second] = time.split(':');
+    return minute * 60 + (+second);
+}
+
 export const workflowCountList = () => {
 
     let list = [];
@@ -54,7 +59,7 @@ export const filterWorkflowStats = () => {
         const createdAtTime = Date.parse(run.created_at);
         const updatedAtTime = Date.parse(run.updated_at);
         const durationMs = updatedAtTime - createdAtTime;
-        const durationInMinute = Math.floor((durationMs / 1000 / 60) << 0) + ':' + Math.floor((durationMs / 1000) % 60);
+        const durationInMinute = Math.floor((durationMs / 1000 / 60) % 60) + ':' + Math.floor((durationMs / 1000) % 60);
         let data = {
             'title': run.name,
             'repo': run.repository_name,

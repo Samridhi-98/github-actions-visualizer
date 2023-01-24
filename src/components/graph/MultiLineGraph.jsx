@@ -1,6 +1,6 @@
 import './Graph.css';
 import { Line } from "react-chartjs-2";
-import { filterWorkflowStats } from '../../helper/Helper';
+import { filterWorkflowStats, convertToSeconds } from '../../helper/Helper';
 
 function MultiLineGraph() {
 
@@ -28,9 +28,9 @@ function MultiLineGraph() {
 
     const labels = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
 
-    const success = Object.values(stats.durations.success).map(data => data.duration.split(':').reduce((acc, time) => (60 * acc) + +time));
-    const failure = Object.values(stats.durations.failure).map(data => data.duration.split(':').reduce((acc, time) => (60 * acc) + +time));
-    const skipped = Object.values(stats.durations.skipped).map(data => data.duration.split(':').reduce((acc, time) => (60 * acc) + +time));
+    const success = Object.values(stats.durations.success).map(data => convertToSeconds(data.duration));
+    const failure = Object.values(stats.durations.failure).map(data => convertToSeconds(data.duration));
+    const skipped = Object.values(stats.durations.skipped).map(data => convertToSeconds(data.duration));
 
     const data = {
         labels,

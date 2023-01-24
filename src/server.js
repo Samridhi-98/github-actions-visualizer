@@ -79,20 +79,19 @@ async function fetchWorkflowData() {
     }
 }
 
-fetchRepositories();
+// fetchRepositories();
 
 // eslint-disable-next-line no-unused-vars
 async function fetchdata() {
 
-    await repository.read();
-
-    for (let index = 0; index < repository.data.list.length; index++) {
-        const { data } = await octokit.paginate('GET /repos/{owner}/{repo}/actions/runs', {
-            org: "asyncapi",
-            repo: repository.data.list[index],
-            per_page: 100,
+    octokit
+        .paginate("GET /repos/{owner}/{repo}/actions/runs", {
+            owner: "asyncapi",
+            repo: "website",
+            per_page: 100
         })
-        console.log(data)
-    }
+        .then((runs) => {
+            console.log(runs);
+        });
 }
-// fetchdata();
+fetchdata();
