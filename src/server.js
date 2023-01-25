@@ -43,6 +43,10 @@ async function fetchWorkflowData() {
 
     const repositories = repository.data.list;
 
+    if (new Date().getDate() === 1) {
+        workflow.data.list = [];
+    }
+
     for (let index = 0; index < repositories.length; index++) {
         const { data } = await octokit.rest.actions.listWorkflowRunsForRepo({
             owner: "asyncapi",
