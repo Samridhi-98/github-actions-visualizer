@@ -18,7 +18,7 @@
   },
   "type": "module",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node src/server.js & (sleep 5 && react-scripts start)",
     "server": "node src/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -9,7 +9,7 @@ function Description() {
     const maxFailureRuntime = stats.durations.failure.reduce((run1, run2) => convertToSeconds(run1.duration) > convertToSeconds(run2.duration) ? run1 : run2);
     const maxSuccessRuntime = stats.durations.success.reduce((run1, run2) => convertToSeconds(run1.duration) > convertToSeconds(run2.duration) ? run1 : run2);
     const maxSkippedRuntime = stats.durations.skipped.reduce((run1, run2) => convertToSeconds(run1.duration) > convertToSeconds(run2.duration) ? run1 : run2);
-    const maxRuntime = Math.max(convertToSeconds(maxFailureRuntime.duration), convertToSeconds(maxSuccessRuntime.duration));
+    const maxRuntime = Math.floor((Math.max(convertToSeconds(maxFailureRuntime.duration), convertToSeconds(maxSuccessRuntime.duration))) / 60);
 
     let resultFailure = Object.values(
         stats.durations.failure.reduce((res, { title, repo }) => {

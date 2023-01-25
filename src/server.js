@@ -84,14 +84,15 @@ async function fetchWorkflowData() {
 // eslint-disable-next-line no-unused-vars
 async function fetchdata() {
 
-    octokit
-        .paginate("GET /repos/{owner}/{repo}/actions/runs", {
-            owner: "asyncapi",
-            repo: "website",
-            per_page: 100
-        })
-        .then((runs) => {
-            console.log(runs);
-        });
+    // octokit
+    //     .paginate(
+    //         "GET /repos/{owner}/{repo}/actions/runs",
+    //         { owner: "asyncapi", repo: "tck", per_page: "100" },
+    //         (response) => response.data.map((workflow) => workflow.display_title)
+    //     )
+    //     .then((workflow) => {
+    //         console.log(workflow)
+    //     });
+    console.log("hello");
 }
 fetchdata();
