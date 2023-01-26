@@ -70,7 +70,6 @@ function setDataToJson(repository, prevTenDays) {
                     "updated_at": run.updated_at,
                     "run_started_at": run.run_started_at,
                 }
-                // console.log(data)
                 if (workflow.data.list.find(run => run.id === data.id) === undefined) {
                     workflow.data.list.push(data);
                 }
@@ -80,8 +79,7 @@ function setDataToJson(repository, prevTenDays) {
 }
 
 async function fetchWorkflowData() {
-    // const date = new Date();
-    // const prevMonthLastDate = new Date(date.getFullYear(), date.getMonth(), 0);
+
     const repositories = repository.data.list;
     const prevTenDays = new Date(new Date().setDate(new Date().getDate() - 10)).toLocaleDateString();
     if (new Date().getDate() === 1) {
