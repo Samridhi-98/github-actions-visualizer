@@ -46,3 +46,9 @@ h4{
   text-align: center;
   background-color: #191B1F;
 }
+
+@media only screen and (max-width: 810px){
+  .group1, .group2, .group3, .group4 {
+    margin: 1vh;
+  }
+}

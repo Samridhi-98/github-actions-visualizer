@@ -84,24 +84,26 @@ hr{
   }
 
   .description-section{
+    height: 100vh;
     flex-direction: column;
   }
 
+  .middle-section{
+    padding: 1vh;
+  }
+
   .bottom-section{
-    height: 100vh;
     flex-direction: column;
   }
 
   .graph-subdivison1{
     display: flex;
     flex-direction: column;
-    padding: 1vh;
   } 
   
   .graph-subdivison2{
     display: flex;
     flex-direction: column;
-    padding: 1vh;
   }
 
   .bar-graph, .line-graph, .area-graph, .multiline-graph{
