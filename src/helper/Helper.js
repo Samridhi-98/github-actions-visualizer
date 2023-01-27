@@ -17,7 +17,6 @@ export const workflowCountList = () => {
 
         let run = {
             "name": data.name,
-            "frequency": 1,
             "duration": durationMin
         };
 
@@ -28,7 +27,6 @@ export const workflowCountList = () => {
             list.push(run)
         }
         else {
-            list[index].frequency += 1;
             list[index].duration += durationMin;
         }
     }
@@ -94,6 +92,8 @@ export const filterHourlyData = () => {
             list[time].push(run.repository_name);
         }
     }
+
+    console.log(list)
 
     return list;
 }
