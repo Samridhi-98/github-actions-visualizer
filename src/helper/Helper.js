@@ -5,6 +5,11 @@ export const convertToSeconds = (time) => {
     return minute * 60 + (+second);
 }
 
+
+export const countWordsInString = (str) => {
+    return str.trim().split(/\s+/).length;
+}
+
 export const workflowCountList = () => {
 
     let list = [];

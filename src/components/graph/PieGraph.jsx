@@ -8,6 +8,15 @@ function PieGraph() {
     const total = (Object.values(stats.conclusion)).reduce((val1, val2) => val1 + val2, 0);
     const conclusionPercentage = (Object.values(stats.conclusion)).map(val => (val * 100) / total)
 
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            }
+        }
+    }
+
     const data = {
         labels: Object.keys(stats.conclusion),
         datasets: [
@@ -31,7 +40,7 @@ function PieGraph() {
         ],
     };
 
-    return <Pie data={data} />;
+    return <Pie data={data} options={options} />;
 }
 
 export default PieGraph;  

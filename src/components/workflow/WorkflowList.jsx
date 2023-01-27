@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import workflow from '../../workflowRuns.json';
 import { AppContext } from '../../context/AppContext.js';
 import noDataImage from '../../images/no-data.png';
+import { countWordsInString } from '../../helper/Helper';
 
 function WorkflowList() {
 
@@ -32,6 +33,9 @@ function WorkflowList() {
             list = setWorkflow();
 
             const card = list.map((workflow, index) => {
+                if (countWordsInString(workflow) > 10) {
+                    workflow = workflow.split(/\s+/).slice(0, 9).join(" ");
+                }
                 return (
                     <div className='card' key={index}> {workflow} </div>
                 )
