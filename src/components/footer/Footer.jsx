@@ -9,7 +9,7 @@ function Footer() {
                     trademark policy and general project policies please see https://lfprojects.org */}
             </p>
             <nav className='footer-nav' aria-label="footer">
-                <span>Copyright © AsyncAPI Project</span>
+                <span>Made with <i>:love:</i> by the AsyncAPI Initiative</span>
                 <ul className='nav-list'>
                     {/* <li className='meta-text'>Copyright © AsyncAPI Project</li> */}
                     <li><a href='https://twitter.com/AsyncAPISpec'>Twitter</a></li>

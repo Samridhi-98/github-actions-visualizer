@@ -79,21 +79,26 @@ export const filterHourlyData = () => {
     for (const run of workflow.list) {
 
         let hours = new Date(run.created_at).getHours();
-        // let minute = new Date(run.created_at).getMinutes();
-        // let second = new Date(run.created_at).getSeconds();
+
+        const createdAtTime = Date.parse(run.created_at);
+        const updatedAtTime = Date.parse(run.updated_at);
+        const durationSec = Math.floor(((updatedAtTime - createdAtTime) / 1000) % 60);
 
         let time = hours;
 
-        if (!list[time]) {
-            list[time] = [run.repository_name];
+        let data = {
+            "noOfRuns": 1,
+            "duration": durationSec
         }
 
-        if (list[time].find(data => data === run.repository_name) === undefined) {
-            list[time].push(run.repository_name);
+        if (!list[time]) {
+            list[time] = data;
+        }
+        else {
+            list[time].noOfRuns += 1;
+            list[time].duration += durationSec;
         }
     }
-
-    console.log(list)
 
     return list;
 }
