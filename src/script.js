@@ -51,7 +51,7 @@ function setDataToJson(repository, prevTenDays) {
                 if (condition) {
                     done();
                 }
-                console.log(repository);
+                // console.log(repository);
                 return response.data
             }
         )
