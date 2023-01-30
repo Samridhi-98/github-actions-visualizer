@@ -49,7 +49,7 @@
   padding-left: 0.5vh;
 }
 
-.bar-graph, .line-graph, .area-graph, .multiline-graph{
+.duration-graph, .total-runtime-graph, .conclusion-graph{
   margin-top: 1vh;
   border-radius: 5px;
   border : 1px solid #282A2F;
@@ -106,7 +106,7 @@ hr{
     flex-direction: column;
   }
 
-  .bar-graph, .line-graph, .area-graph, .multiline-graph{
+  .duration-graph, .total-runtime-graph, .conclusion-graph{
     margin: auto;
   }
 }

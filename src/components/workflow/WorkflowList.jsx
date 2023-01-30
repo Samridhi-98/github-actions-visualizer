@@ -47,7 +47,7 @@ function WorkflowList() {
     return (
         <>
             <div className='workflow-list'>
-                <h4>Workflow List</h4>
+                <h4>Workflows</h4>
                 {renderWorkflow()}
             </div>
         </>

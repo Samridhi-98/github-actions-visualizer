@@ -86,11 +86,11 @@ function Description() {
                 </div>
             </div>
             <div className='group2'>
-                <h4>Most Failed Workflow</h4>
+                <h4>Most Failed Workflows</h4>
                 {renderData(resultFailure)}
             </div>
             <div className='group3'>
-                <h4>Most Skipped Workflow</h4>
+                <h4>Most Skipped Workflows</h4>
                 {renderData(resultSkipped)}
             </div>
             <div className='group4'>

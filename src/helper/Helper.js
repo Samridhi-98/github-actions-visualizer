@@ -10,35 +10,6 @@ export const countWordsInString = (str) => {
     return str.trim().split(/\s+/).length;
 }
 
-export const workflowCountList = () => {
-
-    let list = [];
-
-    for (const data of workflow.list) {
-
-        const createdAtTime = Date.parse(data.created_at);
-        const updatedAtTime = Date.parse(data.updated_at);
-        const durationMin = Math.floor(((updatedAtTime - createdAtTime) / 1000 / 60) % 60);
-
-        let run = {
-            "name": data.name,
-            "duration": durationMin
-        };
-
-        const pair = list.find(workflow => workflow.name === data.name);
-        const index = list.indexOf(pair);
-
-        if (pair === undefined) {
-            list.push(run)
-        }
-        else {
-            list[index].duration += durationMin;
-        }
-    }
-
-    return list;
-}
-
 export const filterWorkflowStats = () => {
     let stats = {
         conclusion: {
@@ -74,38 +45,6 @@ export const filterWorkflowStats = () => {
     }
 
     return stats;
-}
-
-
-export const filterHourlyData = () => {
-
-    let list = {};
-
-    for (const run of workflow.list) {
-
-        let hours = new Date(run.created_at).getHours();
-
-        const createdAtTime = Date.parse(run.created_at);
-        const updatedAtTime = Date.parse(run.updated_at);
-        const durationSec = Math.floor(((updatedAtTime - createdAtTime) / 1000) % 60);
-
-        let time = hours;
-
-        let data = {
-            "noOfRuns": 1,
-            "duration": durationSec
-        }
-
-        if (!list[time]) {
-            list[time] = data;
-        }
-        else {
-            list[time].noOfRuns += 1;
-            list[time].duration += durationSec;
-        }
-    }
-
-    return list;
 }
 
 export const setWorkflowPerDayData = () => {
