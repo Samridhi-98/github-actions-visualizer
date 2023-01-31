@@ -30,9 +30,16 @@ function ConclusionPercentageGraph() {
             {
                 label: 'Percentage',
                 data: conclusionPercentage,
-                borderWidth: 2,
+                // borderWidth: 0.5,
                 borderColor: 'rgb(54, 162, 235)',
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                backgroundColor: (context) => {
+                    const ctx = context.chart.ctx;
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                    gradient.addColorStop(0, 'rgba(54, 162, 235, 0)');
+                    gradient.addColorStop(0.5, 'rgba(255, 99, 132, 0.5)');
+                    gradient.addColorStop(1, 'rgba(75,192,192,0.5)');
+                    return gradient;
+                },
             }
         ],
     };

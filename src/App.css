@@ -70,7 +70,7 @@ hr{
 }
 
 
-@media only screen and (max-width: 810px){
+@media only screen and (max-width: 900px){
 
   .main-content{
     padding: 0vh;
@@ -93,6 +93,9 @@ hr{
   }
 
   .bottom-section{
+    height: 60vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
     flex-direction: column;
   }
 
@@ -105,8 +108,5 @@ hr{
     display: flex;
     flex-direction: column;
   }
-
-  .duration-graph, .total-runtime-graph, .conclusion-graph{
-    margin: auto;
-  }
+  
 }

@@ -51,7 +51,7 @@ function TotalRuntimeGraph() {
         list = list.slice().sort((val1, val2) => val2.duration - val1.duration).slice(0, 20);
         const totalRuntime = list.map(data => (data.duration));
 
-        const labels = (list.map(data => { return (data.name).split(/\s+/).slice(0, 4).join(" ") }));
+        const labels = (list.map(data => { return (data.name).substring(0, 15) }));
 
         const options = {
             responsive: true,
@@ -70,14 +70,13 @@ function TotalRuntimeGraph() {
             labels,
             datasets: [
                 {
-                    // fill: true,
                     label: 'Total Runtime in min',
                     data: totalRuntime,
-                    borderWidth: 2,
+                    borderWidth: 0.5,
                     borderColor: 'rgba(75,192,192,1)',
                     backgroundColor: (context) => {
                         const ctx = context.chart.ctx;
-                        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                        const gradient = ctx.createLinearGradient(0, 0, 0, 500);
                         gradient.addColorStop(0, 'rgba(75,192,192,0)');
                         gradient.addColorStop(0.5, 'rgba(255, 201, 153,0.5)');
                         gradient.addColorStop(1, 'rgba(75,192,192,0.5)');

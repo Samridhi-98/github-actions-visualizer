@@ -75,9 +75,16 @@ function RunsDurationGraph() {
                     label: 'Hourly',
                     data: Object.values(list).map(data => Math.floor(data.duration / 60)),
                     borderColor: 'rgb(57, 87, 52)',
-                    borderWidth: 2,
-                    backgroundColor: 'rgba(57, 87, 52,0.5)',
-                },
+                    borderWidth: 1,
+                    backgroundColor: (context) => {
+                        const ctx = context.chart.ctx;
+                        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+                        gradient.addColorStop(0, 'rgba(57, 87, 52,0)');
+                        gradient.addColorStop(0.5, 'rgba(255, 201, 153,0.5)');
+                        gradient.addColorStop(1, 'rgba(75,192,192,0.5)');
+                        return gradient;
+                    },
+                }
             ],
         };
         return <Bar height={100} options={options} data={data} />;

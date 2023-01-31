@@ -11,8 +11,12 @@ function AppProvider({ children }) {
         dispatch({ type: 'SET_REPOSITORY', payload: { repoList: repoList.filter(title => title.includes('✓ ')) } });
     }
 
+    const setWorkflowTitle = (workflow) => {
+        dispatch({ type: 'SET_WORKFLOW', payload: { workflow: workflow } });
+    }
+
     return (
-        <AppContext.Provider value={{ state, setRepository }}>
+        <AppContext.Provider value={{ state, setRepository, setWorkflowTitle }}>
             {children}
         </AppContext.Provider>
     )

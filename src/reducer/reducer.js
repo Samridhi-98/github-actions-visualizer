@@ -2,6 +2,7 @@ import repository from '../repository.json';
 
 export const initialState = {
     repoList: repository.list,
+    workflow: '',
 }
 
 export function reducer(state, action) {
@@ -11,6 +12,11 @@ export function reducer(state, action) {
             return {
                 ...state,
                 repoList: repositories,
+            }
+        case 'SET_WORKFLOW':
+            return {
+                ...state,
+                workflow: action.payload.workflow
             }
         default:
             return state;

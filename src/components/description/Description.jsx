@@ -12,16 +12,20 @@ function Description() {
     const maxRuntime = Math.floor((Math.max(convertToSeconds(maxFailureRuntime.duration), convertToSeconds(maxSuccessRuntime.duration))) / 60);
 
     let resultFailure = Object.values(
-        stats.durations.failure.reduce((res, { title, repo }) => {
-            res[title] ??= { title, repo, count: 0 };
+        stats.durations.failure.reduce((res, { title, repo, duration }) => {
+            duration = convertToSeconds(duration);
+            res[title] ??= { title, repo, duration, count: 0 };
+            res[title].duration += duration;
             res[title].count++;
             return res;
         }, {})
     ).sort((data1, data2) => data2.count - data1.count).slice(0, 4);
 
     let resultSkipped = Object.values(
-        stats.durations.skipped.reduce((res, { title, repo }) => {
-            res[title] ??= { title, repo, count: 0 };
+        stats.durations.skipped.reduce((res, { title, repo, duration }) => {
+            duration = convertToSeconds(duration);
+            res[title] ??= { title, repo, duration, count: 0 };
+            res[title].duration += duration;
             res[title].count++;
             return res;
         }, {})
@@ -38,6 +42,10 @@ function Description() {
                     <p>
                         <b>Repository: </b>
                         {workflow.repo}
+                    </p>
+                    <p>
+                        <b>Total Runtime: </b>
+                        {Math.floor(workflow.duration / 60)} min
                     </p>
                 </div>
             )

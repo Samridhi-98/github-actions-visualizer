@@ -7,7 +7,7 @@ import { countWordsInString } from '../../helper/Helper';
 
 function WorkflowList() {
 
-    const { state } = useContext(AppContext);
+    const { state, setWorkflowTitle } = useContext(AppContext);
 
     let list = [];
 
@@ -17,6 +17,10 @@ function WorkflowList() {
             list.push(...title.map(data => data.name));
         });
         return list.filter((workflow, index) => list.indexOf(workflow) === index);
+    }
+
+    const dispatchWorkflowToStats = (title) => {
+        setWorkflowTitle(title);
     }
 
 
@@ -36,9 +40,7 @@ function WorkflowList() {
                 if (countWordsInString(workflow) > 10) {
                     workflow = workflow.split(/\s+/).slice(0, 9).join(" ");
                 }
-                return (
-                    <div className='card' key={index}> {workflow} </div>
-                )
+                return <div className='card' key={index} onClick={() => dispatchWorkflowToStats(workflow)}> {workflow} </div>
             })
             return card;
         }
