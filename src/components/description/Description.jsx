@@ -1,5 +1,5 @@
 import './Description.css';
-import { setWorkflowPerDayData, filterWorkflowStats, convertToSeconds } from '../../helper/Helper.js';
+import { setWorkflowPerDayData, filterWorkflowStats, convertToSeconds, calculatePercentage } from '../../helper/Helper.js';
 
 function Description() {
 
@@ -33,6 +33,7 @@ function Description() {
 
     const renderData = (list) => {
         const card = list.map((workflow, index) => {
+            const percentage = calculatePercentage(workflow.count);
             return (
                 <div className='card' key={index}>
                     <p>
@@ -44,8 +45,12 @@ function Description() {
                         {workflow.repo}
                     </p>
                     <p>
-                        <b>Total Runtime: </b>
-                        {Math.floor(workflow.duration / 60)} min
+                        <b>Percentage: </b>
+                        {percentage} %
+                    </p>
+                    <p>
+                        <b>Average Runtime: </b>
+                        {Math.floor(workflow.duration / workflow.count)} sec
                     </p>
                 </div>
             )

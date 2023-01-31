@@ -1,8 +1,9 @@
 import repository from '../repository.json';
+import workflow from '../workflowRuns.json';
 
 export const initialState = {
     repoList: repository.list,
-    workflow: '',
+    workflow: workflow.list[0].name,
 }
 
 export function reducer(state, action) {

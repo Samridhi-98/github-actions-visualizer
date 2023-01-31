@@ -7,6 +7,14 @@
   background-color: #191B1F;
 }
 
+.title{
+  font-style: italic;
+}
+
+h4{
+  text-align: center;
+  background-color: #191B1F; 
+}
 
 @media only screen and (max-width: 900px){
 

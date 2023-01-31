@@ -5,6 +5,9 @@ export const convertToSeconds = (time) => {
     return minute * 60 + (+second);
 }
 
+export const calculatePercentage = (totalNoOfConclusion) => {
+    return ((totalNoOfConclusion * 100) / workflow.list.length).toFixed(2);
+}
 
 export const countWordsInString = (str) => {
     return str.trim().split(/\s+/).length;

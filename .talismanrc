@@ -1,8 +1,6 @@
 fileignoreconfig:
 - filename: src/components/description/Description.jsx
   checksum: e822aaf2faef5f02f85832740c25fffc50f0e45e1424ddf620a00055d358ab3a
-- filename: package-lock.json
-  checksum: cd8c0ed0b99a8a9981ef0d717a663832f39c19fe6aebfcf9b5e2b539323f976b
 - filename: src/workflowRuns.json
   checksum: a97b1c975dd718a8d9d585ca00eb34c247e36524c90b43900c76a1212a50c5cc
 - filename: src/server.js
@@ -16,5 +14,7 @@ fileignoreconfig:
 - filename: src/components/workflow/WorkflowList.jsx
   checksum: 90b17edfcef2da0088d1285b25e064c46c515d1925f98e434cb0ae5ac3547282 
 - filename: src/components/graph/RunsDurationGraph.jsx
-  checksum: 6b39c09eec6854959da1b5e181b10bf8e1b81bfdc26752042ed3972f49141c9b  
+  checksum: 6b39c09eec6854959da1b5e181b10bf8e1b81bfdc26752042ed3972f49141c9b 
+- filename: package-lock.json
+  checksum: f05d9ada8e180aebddba425fc6a1464cc068185aca1033b356cfecfe157001ff   
 version: ""
