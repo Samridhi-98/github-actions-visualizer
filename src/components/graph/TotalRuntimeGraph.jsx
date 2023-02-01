@@ -47,12 +47,11 @@ function TotalRuntimeGraph() {
     }
     else {
         let list = workflowCountList();
-
         list = list.slice().sort((val1, val2) => val2.duration - val1.duration).slice(0, 20);
         const totalRuntime = list.map(data => (data.duration));
 
         const labels = (list.map(data => { return (data.name).substring(0, 15) }));
-
+        const height = window.innerHeight < 920 ? 250 : 100;
         const options = {
             responsive: true,
             plugins: {
@@ -65,7 +64,7 @@ function TotalRuntimeGraph() {
                 }
             }
         };
-        const height = window.innerHeight < 920 ? 200 : 100;
+
         const data = {
             labels,
             datasets: [

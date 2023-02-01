@@ -31,23 +31,18 @@ function Statistics() {
                 stats.count++;
             }
         })
-        // console.log(stats)
         return stats;
     }
     getWorkflowStatstics();
 
     const setWorkflowStatstics = () => {
         const successValue = stats.conclusion["success"];
-        const total = Object.values(stats.conclusion).reduce((val1, val2) => val1 + val2);
-        const percentage = successValue / total;
+        const percentage = successValue / stats.count;
         return (
             <div>
                 <GaugeChart id="gauge-chart6" colors={["#FF5F6D", "#FFC371"]} nrOfLevels={30} percent={percentage} />
                 <b className='title'>{state.workflow}</b>
-                <p>
-                    <b>Average Runtime: </b>
-                    {Math.floor(stats.duration / stats.count)} sec
-                </p>
+                <p><b>Average Runtime: </b>{Math.floor(stats.duration / stats.count)} sec</p>
             </div>
         )
     }

@@ -30,7 +30,6 @@ function ConclusionPercentageGraph() {
             {
                 label: 'Percentage',
                 data: conclusionPercentage,
-                // borderWidth: 0.5,
                 borderColor: 'rgb(54, 162, 235)',
                 backgroundColor: (context) => {
                     const ctx = context.chart.ctx;

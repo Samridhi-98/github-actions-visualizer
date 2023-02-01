@@ -21,12 +21,7 @@ function RepositoryList() {
 
     const renderRepoList = () => {
         const card = name.map((title, index) => {
-            return (
-                <div className='card' key={index} onClick={() => { updateTitle(title) }}>
-                    {/* <input type="checkbox" value={repository} /> */}
-                    {title}
-                </div>
-            )
+            return <div className='card' key={index} onClick={() => { updateTitle(title) }}>{title}</div>
         })
         return card;
     }

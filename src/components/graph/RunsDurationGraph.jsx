@@ -52,7 +52,6 @@ function RunsDurationGraph() {
     }
     else {
         const list = filterHourlyData();
-
         const options = {
             responsive: true,
             plugins: {
@@ -67,8 +66,6 @@ function RunsDurationGraph() {
         }
 
         const labels = Object.keys(list).map(data => parseInt(data));
-        console.log(window.innerHeight);
-
         const height = window.innerHeight < 920 ? 200 : 100;
 
         const data = {

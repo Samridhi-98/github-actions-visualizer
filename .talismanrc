@@ -10,7 +10,7 @@ fileignoreconfig:
 - filename: src/components/graph/BarGraph.jsx
   checksum: 66b7ea5cf6670fe145094e68f59323b88e6ab8dd22549c5ec51eb3bfc2b8d45b
 - filename: src/components/repository/RepositoryList.jsx
-  checksum: 47d21df6b903e6b757a477b17d61a6f0435aec36f1a30f53c50955b3bcb79048
+  checksum: 06220940f0337145352d9f6a3c9934cda952f4185e83a2c73ba8f1897b8cd06e
 - filename: src/components/workflow/WorkflowList.jsx
   checksum: 30963a89edeca42fa951d042f446c943cef07f0e5aff43cb8deca1147b4ecc89 
 - filename: src/components/graph/RunsDurationGraph.jsx

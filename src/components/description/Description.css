@@ -1,4 +1,4 @@
-.group1, .group2, .group3, .group4 {
+.max-runtime-section, .failed-workflows-section, .skipped-workflows-section, .aggregate-stats-section {
   flex: 1;
   color: #CCCDDC;
   border-radius:5px;
@@ -7,21 +7,21 @@
   overflow-y: scroll;
 }
 
-.group1{
+.max-runtime-section{
   margin-right: 0.5vh;
 }
 
-.group2{
-  margin-right: 0.5vh;
-  margin-left: 0.5vh;
-}
-
-.group3{
+.failed-workflows-section{
   margin-right: 0.5vh;
   margin-left: 0.5vh;
 }
 
-.group4{
+.skipped-workflows-section{
+  margin-right: 0.5vh;
+  margin-left: 0.5vh;
+}
+
+.aggregate-stats-section{
   margin-left: 0.5vh;
 }
 
@@ -48,7 +48,7 @@ h4{
 }
 
 @media only screen and (max-width: 912px){
-  .group1, .group2, .group3, .group4 {
+  .max-runtime-section, .failed-workflows-section, .skipped-workflows-section, .aggregate-stats-section {
     margin: 1vh;
   }
 }

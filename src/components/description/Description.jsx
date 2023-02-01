@@ -36,79 +36,45 @@ function Description() {
             const percentage = calculatePercentage(workflow.count);
             return (
                 <div className='card' key={index}>
-                    <p>
-                        <b>Title: </b>
-                        {workflow.title}
-                    </p>
-                    <p>
-                        <b>Repository: </b>
-                        {workflow.repo}
-                    </p>
-                    <p>
-                        <b>Percentage: </b>
-                        {percentage} %
-                    </p>
-                    <p>
-                        <b>Average Runtime: </b>
-                        {Math.floor(workflow.duration / workflow.count)} sec
-                    </p>
+                    <p><b>Title: </b>{workflow.title}</p>
+                    <p> <b>Repository: </b>{workflow.repo}</p>
+                    <p><b>Percentage: </b>{percentage} %</p>
+                    <p><b>Average Runtime: </b>{Math.floor(workflow.duration / workflow.count)} sec</p>
                 </div>
             )
         })
         return card;
     }
 
+    const renderRuntimeStats = (runtime, heading) => {
+        return (
+            <div className='card'>
+                <b className='heading'>{heading}</b>
+                <p> <b>Workflow Title: </b>{runtime.title}</p>
+                <p><b>Duration: </b>{runtime.duration} min</p>
+                <p><b>Repository: </b>{runtime.repo}</p>
+            </div>
+        )
+    }
+
     return (
         <>
-            <div className='group1'>
-                <h4>Statistics</h4>
-                <div className='card'>
-                    <b className='heading'>Max Failure Runtime</b>
-                    <p>
-                        <b>Workflow Title: </b>{maxFailureRuntime.title}
-                    </p>
-                    <p>
-                        <b>Duration: </b>{maxFailureRuntime.duration} min
-                    </p>
-                    <p>
-                        <b>Repository: </b>{maxFailureRuntime.repo}
-                    </p>
-                </div>
-                <div className='card'>
-                    <b className='heading'>Max Success Runtime</b>
-                    <p>
-                        <b>Workflow Title: </b>{maxSuccessRuntime.title}
-                    </p>
-                    <p>
-                        <b>Duration: </b>{maxSuccessRuntime.duration} min
-                    </p>
-                    <p>
-                        <b>Repository: </b>{maxSuccessRuntime.repo}
-                    </p>
-                </div>
-                <div className='card'>
-                    <b className='heading'>Max Skipped Runtime</b>
-                    <p>
-                        <b>Workflow Title: </b>{maxSkippedRuntime.title}
-                    </p>
-                    <p>
-                        <b>Duration: </b>{maxSkippedRuntime.duration} min
-                    </p>
-                    <p>
-                        <b>Repository: </b>{maxSkippedRuntime.repo}
-                    </p>
-                </div>
+            <div className='max-runtime-section'>
+                <h4>Runtime Statistics</h4>
+                {renderRuntimeStats(maxFailureRuntime, "Max Failure Runtime")}
+                {renderRuntimeStats(maxSuccessRuntime, "Max Success Runtime")}
+                {renderRuntimeStats(maxSkippedRuntime, "Max Skipped Runtime")}
             </div>
-            <div className='group2'>
+            <div className='failed-workflows-section'>
                 <h4>Most Failed Workflows</h4>
                 {renderData(resultFailure)}
             </div>
-            <div className='group3'>
+            <div className='skipped-workflows-section'>
                 <h4>Most Skipped Workflows</h4>
                 {renderData(resultSkipped)}
             </div>
-            <div className='group4'>
-                <h4>Statistics</h4>
+            <div className='aggregate-stats-section'>
+                <h4>Aggregate Statistics</h4>
                 <div className='card'>
                     <p>Average no of runs per day :<b> {(workflow.averageNoOfRunsPerDay).toFixed(2)}</b></p>
                 </div>
