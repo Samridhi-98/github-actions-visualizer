@@ -61,6 +61,7 @@ function Description() {
     return (
         <>
             <div className='group1'>
+                <h4>Statistics</h4>
                 <div className='card'>
                     <b className='heading'>Max Failure Runtime</b>
                     <p>
@@ -107,6 +108,7 @@ function Description() {
                 {renderData(resultSkipped)}
             </div>
             <div className='group4'>
+                <h4>Statistics</h4>
                 <div className='card'>
                     <p>Average no of runs per day :<b> {(workflow.averageNoOfRunsPerDay).toFixed(2)}</b></p>
                 </div>

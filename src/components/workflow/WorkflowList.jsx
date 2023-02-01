@@ -37,10 +37,11 @@ function WorkflowList() {
             list = setWorkflow();
 
             const card = list.map((workflow, index) => {
+                let tempVariable = workflow;
                 if (countWordsInString(workflow) > 10) {
                     workflow = workflow.split(/\s+/).slice(0, 9).join(" ");
                 }
-                return <div className='card' key={index} onClick={() => dispatchWorkflowToStats(workflow)}> {workflow} </div>
+                return <div className='card' key={index} onClick={() => dispatchWorkflowToStats(tempVariable)}> {workflow} </div>
             })
             return card;
         }

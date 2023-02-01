@@ -9,7 +9,6 @@ function Statistics() {
 
     const { state } = useContext(AppContext);
     let stats = {
-        title: '',
         duration: 0,
         conclusion: {
             success: 0,
@@ -28,12 +27,11 @@ function Statistics() {
                 if (stats.conclusion[data.conclusion] !== undefined) {
                     stats.conclusion[data.conclusion] += 1;
                 }
-                stats.title = data.name;
                 stats.duration += duration;
                 stats.count++;
             }
         })
-        console.log(stats)
+        // console.log(stats)
         return stats;
     }
     getWorkflowStatstics();
@@ -44,9 +42,8 @@ function Statistics() {
         const percentage = successValue / total;
         return (
             <div>
-                <b>{"Success Rate"}</b>
                 <GaugeChart id="gauge-chart6" colors={["#FF5F6D", "#FFC371"]} nrOfLevels={30} percent={percentage} />
-                <b className='title'>{stats.title}</b>
+                <b className='title'>{state.workflow}</b>
                 <p>
                     <b>Average Runtime: </b>
                     {Math.floor(stats.duration / stats.count)} sec
@@ -58,7 +55,7 @@ function Statistics() {
     return (
         <>
             <div className='stats'>
-                <h4>Statistics</h4>
+                <h4>Success Rate</h4>
                 {setWorkflowStatstics()}
             </div>
         </>

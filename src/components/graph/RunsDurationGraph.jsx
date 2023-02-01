@@ -67,6 +67,9 @@ function RunsDurationGraph() {
         }
 
         const labels = Object.keys(list).map(data => parseInt(data));
+        console.log(window.innerHeight);
+
+        const height = window.innerHeight < 920 ? 200 : 100;
 
         const data = {
             labels,
@@ -87,7 +90,7 @@ function RunsDurationGraph() {
                 }
             ],
         };
-        return <Bar height={100} options={options} data={data} />;
+        return <Bar height={height} options={options} data={data} />;
     }
 }
 

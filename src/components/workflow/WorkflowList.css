@@ -34,7 +34,7 @@ img{
   height: 100px;
 }
 
-@media only screen and (max-width: 900px){
+@media only screen and (max-width: 912px){
 
  .workflow-list{
   margin: 1vh;

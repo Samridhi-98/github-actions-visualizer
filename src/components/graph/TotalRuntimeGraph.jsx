@@ -65,7 +65,7 @@ function TotalRuntimeGraph() {
                 }
             }
         };
-
+        const height = window.innerHeight < 920 ? 200 : 100;
         const data = {
             labels,
             datasets: [
@@ -86,7 +86,7 @@ function TotalRuntimeGraph() {
             ],
         };
 
-        return <Bar height={100} options={options} data={data} />;
+        return <Bar height={height} options={options} data={data} />;
     }
 }
 
