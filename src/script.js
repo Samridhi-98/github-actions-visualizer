@@ -82,10 +82,7 @@ async function fetchWorkflowData() {
 
     const repositories = repository.data.list;
     const prevTenDays = new Date(new Date().setDate(new Date().getDate() - 10)).toLocaleDateString();
-    if (new Date().getDate() === 1) {
-        workflow.data.list = [];
-    }
-
+    workflow.data.list = [];
     for (let index = 0; index < repositories.length; index++) {
         setTimeout(() => setDataToJson(repositories[index], prevTenDays), index * 5000);
     }
