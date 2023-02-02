@@ -14,6 +14,6 @@ Right now we have [this](https://www.figma.com/file/ch5mSLGIaHnagjdfsPxGrd/Githu
 
 #### After
 
-![image](https://user-images.githubusercontent.com/54466041/214871258-d330336f-bbc9-457e-9902-7e6c35188121.png)
+![image](https://user-images.githubusercontent.com/54466041/216283875-80ff33a7-e803-4caa-ab3d-65f83aeb7ca1.png)
 
-![image](https://user-images.githubusercontent.com/54466041/214871413-1d6c8b73-2bb3-482e-a8a5-692c635633f3.png)
+![image](https://user-images.githubusercontent.com/54466041/216284049-fdb4fb22-a05e-4cae-be61-8af6a4a1aaf0.png)
