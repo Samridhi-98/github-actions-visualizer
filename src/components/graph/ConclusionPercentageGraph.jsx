@@ -23,7 +23,7 @@ function ConclusionPercentageGraph() {
     };
 
     const labels = Object.keys(stats.conclusion);
-    const height = window.innerHeight < 920 ? 200 : 100;
+    const height = (window.innerHeight < 920 && window.innerWidth < 920) ? 200 : 100;
     const data = {
         labels,
         datasets: [

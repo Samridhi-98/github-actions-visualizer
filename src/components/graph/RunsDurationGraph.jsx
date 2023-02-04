@@ -66,7 +66,7 @@ function RunsDurationGraph() {
         }
 
         const labels = Object.keys(list).map(data => parseInt(data));
-        const height = window.innerHeight < 920 ? 200 : 100;
+        const height = (window.innerHeight < 920 && window.innerWidth < 920) ? 200 : 100;
 
         const data = {
             labels,

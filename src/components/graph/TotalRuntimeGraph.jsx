@@ -51,7 +51,8 @@ function TotalRuntimeGraph() {
         const totalRuntime = list.map(data => (data.duration));
 
         const labels = (list.map(data => { return (data.name).substring(0, 15) }));
-        const height = window.innerHeight < 920 ? 250 : 100;
+        const height = (window.innerHeight < 920 && window.innerWidth < 920) ? 250 : 100;
+        console.log(height, "-", window.innerHeight)
         const options = {
             responsive: true,
             plugins: {
