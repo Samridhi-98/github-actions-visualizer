@@ -5,6 +5,7 @@
   padding-bottom: 2vh;
   border: 2px solid #282A2F;
   background-color: #191B1F;
+  overflow-y: scroll;
 }
 
 .title{
@@ -26,6 +27,7 @@ h4{
   .stats{
     margin: 1vh;
     padding-bottom: 1vh;
+    overflow-y: unset;
   }
 
 }
