@@ -39,7 +39,7 @@ function Statistics() {
         const successValue = stats.conclusion["success"];
         const percentage = successValue / stats.count;
         return (
-            <div>
+            <div className='success-rate'>
                 <GaugeChart id="gauge-chart6" colors={["#FF5F6D", "#FFC371"]} nrOfLevels={30} percent={percentage} />
                 <b className='title'>{state.workflow}</b>
                 <p><b>Average Runtime: </b>{Math.floor(stats.duration / stats.count)} sec</p>

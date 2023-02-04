@@ -11,6 +11,11 @@
   font-style: italic;
 }
 
+.success-rate{
+  display: flex;
+  flex-direction: column;
+}
+
 h4{
   text-align: center;
   background-color: #191B1F; 
