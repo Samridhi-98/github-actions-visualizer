@@ -4,10 +4,12 @@ import { Bar } from 'react-chartjs-2';
 import { AppContext } from '../../context/AppContext.js';
 import workflow from '../../workflowRuns.json';
 import noDataImage from '../../images/no-data.png';
+import useWindowDimensions from '../../hooks/useWindowsDimension.js';
 
 function TotalRuntimeGraph() {
 
     const { state } = useContext(AppContext);
+    const { innerHeight, innerWidth } = useWindowDimensions();
 
     const workflowCountList = () => {
 
@@ -51,8 +53,7 @@ function TotalRuntimeGraph() {
         const totalRuntime = list.map(data => (data.duration));
 
         const labels = (list.map(data => { return (data.name).substring(0, 15) }));
-        const height = (window.innerHeight < 920 && window.innerWidth < 920) ? 250 : 100;
-        console.log(height, "-", window.innerHeight)
+        const height = (innerHeight < 920 && innerWidth < 920) ? 250 : 100;
         const options = {
             responsive: true,
             plugins: {

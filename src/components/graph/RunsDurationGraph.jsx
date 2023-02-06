@@ -4,10 +4,12 @@ import { Bar } from "react-chartjs-2";
 import workflow from '../../workflowRuns.json';
 import { AppContext } from '../../context/AppContext.js';
 import noDataImage from '../../images/no-data.png';
+import useWindowDimensions from '../../hooks/useWindowsDimension.js';
 
 function RunsDurationGraph() {
 
     const { state } = useContext(AppContext);
+    const { innerHeight, innerWidth } = useWindowDimensions();
 
     const filterHourlyData = () => {
 
@@ -66,7 +68,7 @@ function RunsDurationGraph() {
         }
 
         const labels = Object.keys(list).map(data => parseInt(data));
-        const height = (window.innerHeight < 920 && window.innerWidth < 920) ? 200 : 100;
+        const height = (innerHeight < 920 && innerWidth < 920) ? 200 : 100;
 
         const data = {
             labels,

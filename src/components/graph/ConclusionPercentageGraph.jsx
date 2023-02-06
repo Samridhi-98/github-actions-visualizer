@@ -1,10 +1,12 @@
 import './Graph.css';
 import { Bar } from "react-chartjs-2";
 import { filterWorkflowStats } from '../../helper/Helper.js';
+import useWindowDimensions from '../../hooks/useWindowsDimension.js';
 
 function ConclusionPercentageGraph() {
 
     const stats = filterWorkflowStats();
+    const { innerHeight, innerWidth } = useWindowDimensions();
     const total = (Object.values(stats.conclusion)).reduce((val1, val2) => val1 + val2, 0);
     const conclusionPercentage = (Object.values(stats.conclusion)).map(val => (val * 100) / total);
 
@@ -23,7 +25,7 @@ function ConclusionPercentageGraph() {
     };
 
     const labels = Object.keys(stats.conclusion);
-    const height = (window.innerHeight < 920 && window.innerWidth < 920) ? 200 : 100;
+    const height = (innerHeight < 920 && innerWidth < 920) ? 200 : 100;
     const data = {
         labels,
         datasets: [
