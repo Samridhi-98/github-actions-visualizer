@@ -62,6 +62,7 @@
     "dotnet-rabbitmq-template",
     "EDAVisualiser",
     "problem",
-    "jasyncapi-idea-plugin"
+    "jasyncapi-idea-plugin",
+    "protobuf-schema-parser"
   ]
 }
